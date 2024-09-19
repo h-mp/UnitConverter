@@ -2,14 +2,16 @@
   "name": "laboration-2",
   "version": "1.0.0",
   "description": "",
-  "browser": "src/js/index.js",
   "type": "module",
+  "main": "src/app.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
+    "start": "node src/app.js",
+    "test": "npx --node-options=--experimental-vm-modules jest || exit 0"
   },
-  "keywords": [],
   "author": "Hilja-Maria Paananen <hp222qn@student.lnu.se>",
-  "license": "ISC"
+  "license": "ISC",
+  "private": false,
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
