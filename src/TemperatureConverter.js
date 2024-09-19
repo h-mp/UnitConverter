@@ -5,13 +5,14 @@
  */
 
 /**
- * A class to convert temperatures
+ * A class to convert temperatures.
  */
 export class TemperatureConverter {
   /**
    * Validates the input.
    *
    * @param {Number} temperature - The temperature to be converted
+   * @throws {Error} - If the temperature is not a number
    */
   #inputValidation(temperature) {
     if (typeof temperature !== 'number' || isNaN(temperature)) {
