@@ -36,13 +36,13 @@ test('Converting ounces to grams', () => {
   expect(weightConverter.ouncesToGrams(5.5)).toBeCloseTo(155.92, 2)
 })
 
-// Test case to check input validation for both methods
+// Test case to check input validation for all methods
 test('Input validation', () => {
   expect(() => weightConverter.kilogramsToPounds('string')).toThrowError('Weight must be a number')
 
-  expect(() => weightConverter.kilogramsToPounds(null)).toThrowError('Weight must be a number')
+  expect(() => weightConverter.poundsToKilograms(null)).toThrowError('Weight must be a number')
 
-  expect(() => weightConverter.poundsToKilograms(NaN)).toThrowError('Weight must be a number')
+  expect(() => weightConverter.gramsToOunces(NaN)).toThrowError('Weight must be a number')
 
-  expect(() => weightConverter.poundsToKilograms(undefined)).toThrowError('Weight must be a number')
+  expect(() => weightConverter.ouncesToGrams(undefined)).toThrowError('Weight must be a number')
 })
