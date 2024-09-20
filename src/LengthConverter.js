@@ -13,11 +13,17 @@ export class LengthConverter {
    */
   #mToFtConversionRate
 
+    /**
+   * Private field for the conversion rate from centimeters to inches.
+   */
+  #cmToInConversionRate
+
   /**
    * The constructor.
    */
   constructor() {
     this.#mToFtConversionRate = 3.2808
+    this.#cmToInConversionRate = 0.39370
   }
 
   /**
@@ -55,5 +61,31 @@ export class LengthConverter {
 
     const meters = feet / this.#mToFtConversionRate
     return meters
+  }
+
+  /**
+   * Converts the length from centimeters to inches.
+   *
+   * @param {Number} feet - The length to be converted
+   * @return {Number} - The length in inches
+   */
+  centimetersToInches(centimeters) {
+    this.#inputValidation(centimeters)
+
+    const inches = centimeters * this.#cmToInConversionRate
+    return inches
+  }
+
+  /**
+   * Converts the length from inches to centimeters.
+   *
+   * @param {Number} feet - The length to be converted
+   * @return {Number} - The length in centimeters
+   */
+  inchesToCentimeters(inches) {
+    this.#inputValidation(inches)
+
+    const centimeters = inches / this.#cmToInConversionRate
+    return centimeters
   }
 }
