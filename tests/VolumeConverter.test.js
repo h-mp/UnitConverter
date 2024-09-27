@@ -22,13 +22,27 @@ test('Converting liters to gallons', () => {
   expect(volumeConverter.litersToGallons(9.2)).toBeCloseTo(2.430, 2)
 })
 
+// Test case to check pints to liters conversion
+test('Converting pints to liters', () => {
+  expect(volumeConverter.pintsToLiters(21)).toBeCloseTo(9.936, 2)
+
+  expect(volumeConverter.pintsToLiters(12.9)).toBeCloseTo(6.103, 2)
+})
+
+// Test case to check liters to pints conversion
+test('Converting liters to pints', () => {
+  expect(volumeConverter.litersToPints(19)).toBeCloseTo(40.154, 2)
+
+  expect(volumeConverter.litersToPints(4.6)).toBeCloseTo(9.721, 2)
+})
+
 // Test case to check input validation for both methods
 test('Input validation', () => {
   expect(() => volumeConverter.gallonsToLiters('string')).toThrowError('Volume must be a number')
 
   expect(() => volumeConverter.litersToGallons(null)).toThrowError('Volume must be a number')
 
-  expect(() => volumeConverter.gallonsToLiters(NaN)).toThrowError('Volume must be a number')
+  expect(() => volumeConverter.pintsToLiters(NaN)).toThrowError('Volume must be a number')
 
-  expect(() => volumeConverter.litersToGallons(undefined)).toThrowError('Volume must be a number')
+  expect(() => volumeConverter.litersToPints(undefined)).toThrowError('Volume must be a number')
 })
