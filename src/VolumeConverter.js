@@ -14,10 +14,16 @@ export class VolumeConverter {
   #galToLConversionRate
 
   /**
+   * Private field for the conversion rate from pints to liters.
+   */
+  #ptToLConversionRate
+
+  /**
    * The constructor.
    */
   constructor() {
     this.#galToLConversionRate = 0.26417
+    this.#ptToLConversionRate = 2.1134
   }
 
   /**
@@ -48,7 +54,7 @@ export class VolumeConverter {
   /**
    * Converts the volume from liters to gallons.
    *
-   * @param {Number} liters - The volume in liters
+   * @param {Number} liters - The volume to be converted
    * @return {Number} - The volume in gallons 
    */
   litersToGallons(liters) {
@@ -56,5 +62,31 @@ export class VolumeConverter {
 
     const gallons = liters * this.#galToLConversionRate
     return gallons
+  }
+
+  /**
+   * Converts the volume from pints to liters.
+   *
+   * @param {Number} pints - The volume to be converted
+   * @return {Number} - The volume in liters
+   */
+  pintsToLiters(pints) {
+    this.#inputValidation(pints)
+
+    const liters = pints / this.#ptToLConversionRate
+    return liters
+  }
+
+  /**
+   * Converts the volume from liters to pints.
+   *
+   * @param {Number} liters - The volume to be converted
+   * @return {Number} - The volume in pints
+   */
+  litersToPints(liters) {
+    this.#inputValidation(liters)
+
+    const pints = liters * this.#ptToLConversionRate
+    return pints
   }
 }
