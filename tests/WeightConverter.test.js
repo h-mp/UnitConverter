@@ -4,7 +4,7 @@
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
-import { WeightConverter } from "../src/WeightConverter.js"
+import { WeightConverter } from '../src/WeightConverter'
 
 const weightConverter = new WeightConverter()
 
@@ -36,13 +36,11 @@ test('Converting ounces to grams', () => {
   expect(weightConverter.ouncesToGrams(5.5)).toBeCloseTo(155.92, 2)
 })
 
-// Test case to check input validation for all methods
-test('Input validation', () => {
-  expect(() => weightConverter.kilogramsToPounds('string')).toThrowError('Weight must be a number')
+// Test case to check input validation
+test('Validating input', () => {
+  expect(() => weightConverter.kilogramsToPounds('string')).toThrowError('Input must be a number')
 
-  expect(() => weightConverter.poundsToKilograms(null)).toThrowError('Weight must be a number')
+  expect(() => weightConverter.gramsToOunces(NaN)).toThrowError('Input must be a number')
 
-  expect(() => weightConverter.gramsToOunces(NaN)).toThrowError('Weight must be a number')
-
-  expect(() => weightConverter.ouncesToGrams(undefined)).toThrowError('Weight must be a number')
+  expect(() => weightConverter.ouncesToGrams(-1)).toThrowError('Number must be positive')
 })

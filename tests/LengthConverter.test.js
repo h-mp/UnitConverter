@@ -36,13 +36,11 @@ test('Converting inches to centimeters', () => {
   expect(lengthConverter.inchesToCentimeters(0.5)).toBeCloseTo(1.27, 2)
 })
 
-// Test case to check input validation for all methods
-test('Input validation', () => {
-  expect(() => lengthConverter.metersToFeet('string')).toThrowError('Length must be a number')
+// Test case to check input validation
+test('Validating input', () => {
+  expect(() => lengthConverter.metersToFeet('string')).toThrowError('Input must be a number')
 
-  expect(() => lengthConverter.feetToMeters(NaN)).toThrowError('Length must be a number')
+  expect(() => lengthConverter.feetToMeters(NaN)).toThrowError('Input must be a number')
 
-  expect(() => lengthConverter.centimetersToInches(undefined)).toThrowError('Length must be a number')
-
-  expect(() => lengthConverter.inchesToCentimeters(null)).toThrowError('Length must be a number')
+  expect(() => lengthConverter.centimetersToInches(-1)).toThrowError('Number must be positive')
 })

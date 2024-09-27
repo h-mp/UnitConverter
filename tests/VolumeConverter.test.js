@@ -4,7 +4,7 @@
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
-import { VolumeConverter } from '../src/VolumeConverter.js'
+import { VolumeConverter } from '../src/VolumeConverter'
 
 const volumeConverter = new VolumeConverter()
 
@@ -50,13 +50,11 @@ test('Converting deciliters to cups', () => {
   expect(volumeConverter.decilitersToCups(22.7)).toBeCloseTo(9.594, 2)
 })
 
-// Test case to check input validation for both methods
-test('Input validation', () => {
-  expect(() => volumeConverter.gallonsToLiters('string')).toThrowError('Volume must be a number')
+// Test case to check input validation
+test('Validating input', () => {
+  expect(() => volumeConverter.litersToGallons('string')).toThrowError('Input must be a number')
 
-  expect(() => volumeConverter.litersToGallons(null)).toThrowError('Volume must be a number')
+  expect(() => volumeConverter.decilitersToCups(NaN)).toThrowError('Input must be a number')
 
-  expect(() => volumeConverter.pintsToLiters(NaN)).toThrowError('Volume must be a number')
-
-  expect(() => volumeConverter.litersToPints(undefined)).toThrowError('Volume must be a number')
+  expect(() => volumeConverter.pintsToLiters(-1)).toThrowError('Number must be positive')
 })

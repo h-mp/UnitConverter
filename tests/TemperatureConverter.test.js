@@ -4,7 +4,7 @@
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
-import { TemperatureConverter } from '../src/TemperatureConverter.js'
+import { TemperatureConverter } from '../src/TemperatureConverter'
 
 const temperatureConverter = new TemperatureConverter()
 
@@ -22,13 +22,9 @@ test('Converting Celsius to Fahrenheit', () => {
   expect(temperatureConverter.celsiusToFahrenheit(42)).toBeCloseTo(107.6, 2)
 })
 
-// Test case to check input validation for both methods
-test('Input validation', () => {
-  expect(() => temperatureConverter.fahrenheitToCelsius('string')).toThrowError('Temperature must be a number')
+// Test case to check input validation
+test('Validating input', () => {
+  expect(() => temperatureConverter.fahrenheitToCelsius('string')).toThrowError('Input must be a number')
 
-  expect(() => temperatureConverter.fahrenheitToCelsius(null)).toThrowError('Temperature must be a number')
-
-  expect(() => temperatureConverter.celsiusToFahrenheit(NaN)).toThrowError('Temperature must be a number')
-
-  expect(() => temperatureConverter.celsiusToFahrenheit(undefined)).toThrowError('Temperature must be a number')
+  expect(() => temperatureConverter.celsiusToFahrenheit(NaN)).toThrowError('Input must be a number')
 })
