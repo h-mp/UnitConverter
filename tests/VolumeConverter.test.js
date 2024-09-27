@@ -36,6 +36,20 @@ test('Converting liters to pints', () => {
   expect(volumeConverter.litersToPints(4.6)).toBeCloseTo(9.721, 2)
 })
 
+// Test case to check cups to deciliters conversion
+test('Converting cups to deciliters', () => {
+  expect(volumeConverter.cupsToDeciliters(3)).toBeCloseTo(7.097, 2)
+
+  expect(volumeConverter.cupsToDeciliters(8.1)).toBeCloseTo(19.163, 2)
+})
+
+// Test case to check deciliters to cups conversion
+test('Converting deciliters to cups', () => {
+  expect(volumeConverter.decilitersToCups(14)).toBeCloseTo(5.917, 2)
+
+  expect(volumeConverter.decilitersToCups(22.7)).toBeCloseTo(9.594, 2)
+})
+
 // Test case to check input validation for both methods
 test('Input validation', () => {
   expect(() => volumeConverter.gallonsToLiters('string')).toThrowError('Volume must be a number')
