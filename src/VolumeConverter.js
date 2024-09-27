@@ -4,22 +4,29 @@
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
+import { InputValidator } from './InputValidator.js'
+
 /**
  * A class to convert volumes.
  */
 export class VolumeConverter {
   /**
-   * Private field for the conversion rate from gallons to liters.
+   * The input validator.
+   */
+  #inputValidator
+
+  /**
+   * Conversion rate from gallons to liters.
    */
   #galToLConversionRate
 
   /**
-   * Private field for the conversion rate from pints to liters.
+   * Conversion rate from pints to liters.
    */
   #ptToLConversionRate
 
   /**
-   * Private field for the conversion rate from cups to deciliters.
+   * Conversion rate from cups to deciliters.
    */
   cToDlConversionRate
 
@@ -27,6 +34,7 @@ export class VolumeConverter {
    * The constructor.
    */
   constructor() {
+    this.#inputValidator = new InputValidator()
     this.#galToLConversionRate = 0.26417
     this.#ptToLConversionRate = 2.1134
     this.cToDlConversionRate = 2.3658
@@ -35,13 +43,11 @@ export class VolumeConverter {
   /**
    * Validates the input.
    *
-   * @param {Number} temperature - The volume to be converted
-   * @throws {Error} - If the volume is not a number
+   * @param {*} input - The input
    */
-  #inputValidation(volume) {
-    if (typeof volume !== 'number' || isNaN(volume)) {
-      throw new Error('Volume must be a number')
-    }
+  #validateInput(input) {
+    this.#inputValidator.validateInputType(input)
+    this.#inputValidator.validatePositiveNumber(input)
   }
 
   /**
@@ -51,7 +57,7 @@ export class VolumeConverter {
    * @return {Number} - The volume in liters
    */
   gallonsToLiters(gallons) {
-    this.#inputValidation(gallons)
+    this.#validateInput(gallons)
 
     const liters = gallons / this.#galToLConversionRate
     return liters
@@ -64,7 +70,7 @@ export class VolumeConverter {
    * @return {Number} - The volume in gallons 
    */
   litersToGallons(liters) {
-    this.#inputValidation(liters)
+    this.#validateInput(liters)
 
     const gallons = liters * this.#galToLConversionRate
     return gallons
@@ -77,7 +83,7 @@ export class VolumeConverter {
    * @return {Number} - The volume in liters
    */
   pintsToLiters(pints) {
-    this.#inputValidation(pints)
+    this.#validateInput(pints)
 
     const liters = pints / this.#ptToLConversionRate
     return liters
@@ -90,7 +96,7 @@ export class VolumeConverter {
    * @return {Number} - The volume in pints
    */
   litersToPints(liters) {
-    this.#inputValidation(liters)
+    this.#validateInput(liters)
 
     const pints = liters * this.#ptToLConversionRate
     return pints
@@ -103,7 +109,7 @@ export class VolumeConverter {
    * @return {Number} - The volume in deciliters
    */
   cupsToDeciliters(cups) {
-    this.#inputValidation(cups)
+    this.#validateInput(cups)
 
     const deciliters = cups * this.cToDlConversionRate
     return deciliters
@@ -116,7 +122,7 @@ export class VolumeConverter {
    * @return {Number} - The volume in cups
    */
   decilitersToCups(deciliters) {
-    this.#inputValidation(deciliters)
+    this.#validateInput(deciliters)
 
     const cups = deciliters / this.cToDlConversionRate
     return cups

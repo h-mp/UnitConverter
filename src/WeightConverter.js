@@ -4,17 +4,24 @@
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
+import { InputValidator } from './InputValidator.js'
+
 /**
  * A class to convert weights.
  */
 export class WeightConverter {
   /**
-   * Private field for the conversion rate from kilograms to pounds.
+   * The input validator.
+   */
+  #inputValidator
+
+  /**
+   * Conversion rate from kilograms to pounds.
    */
   #kgToLbConversionRate
 
   /**
-   * Private field for the conversion rate from kilograms to ounces.
+   * Conversion rate from kilograms to ounces.
    */
   #gToOzConversionRate
 
@@ -22,20 +29,19 @@ export class WeightConverter {
    * The constructor.
    */
   constructor() {
+    this.#inputValidator = new InputValidator()
     this.#kgToLbConversionRate = 2.2046
     this.#gToOzConversionRate = 0.035274
   }
 
   /**
-   * Validates the input weight.
-   * 
-   * @param {Number} weight - The weight to be converted
-   * @throws {Error} - If the weight is not a number
+   * Validates the input.
+   *
+   * @param {*} input - The input
    */
-  #inputValidation(weight) {
-    if (typeof weight !== 'number' || isNaN(weight)) {
-      throw new Error('Weight must be a number')
-    }
+  #validateInput(input) {
+    this.#inputValidator.validateInputType(input)
+    this.#inputValidator.validatePositiveNumber(input)
   }
 
   /**
@@ -45,7 +51,7 @@ export class WeightConverter {
    * @returns {Number} - The weight in pounds
    */
   kilogramsToPounds(kilograms) {
-    this.#inputValidation(kilograms)
+    this.#validateInput(kilograms)
 
     const pounds = kilograms * this.#kgToLbConversionRate
     return pounds
@@ -58,7 +64,7 @@ export class WeightConverter {
    * @returns {Number} - The weight in kilograms
    */
   poundsToKilograms(pounds) {
-    this.#inputValidation(pounds)
+    this.#validateInput(pounds)
 
     const kilograms = pounds / this.#kgToLbConversionRate
     return kilograms
@@ -71,7 +77,7 @@ export class WeightConverter {
    * @returns {Number} - The weight in ounces
    */
   gramsToOunces(grams) {
-    this.#inputValidation(grams)
+    this.#validateInput(grams)
 
     const ounces = grams * this.#gToOzConversionRate
     return ounces
@@ -84,7 +90,7 @@ export class WeightConverter {
    * @returns {Number} - The weight in grams
    */
   ouncesToGrams(ounces) {
-    this.#inputValidation(ounces)
+    this.#validateInput(ounces)
 
     const grams = ounces / this.#gToOzConversionRate
     return grams

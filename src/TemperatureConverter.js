@@ -4,20 +4,22 @@
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
+import { InputValidator } from './InputValidator.js'
+
 /**
  * A class to convert temperatures.
  */
 export class TemperatureConverter {
   /**
-   * Validates the input.
-   *
-   * @param {Number} temperature - The temperature to be converted
-   * @throws {Error} - If the temperature is not a number
+   * The input validator.
    */
-  #inputValidation(temperature) {
-    if (typeof temperature !== 'number' || isNaN(temperature)) {
-      throw new Error('Temperature must be a number')
-    }
+  #inputValidator
+
+  /**
+   * The constructor.
+   */
+  constructor() {
+    this.#inputValidator = new InputValidator()
   }
 
   /**
@@ -27,7 +29,7 @@ export class TemperatureConverter {
    * @returns {Number} - The temperature in Celsius
    */
   fahrenheitToCelsius(fahrenheit) {
-    this.#inputValidation(fahrenheit)
+    this.#inputValidator.validateInputType(fahrenheit)
 
     const celsius = (fahrenheit - 32) / 1.8
     return celsius
@@ -40,7 +42,7 @@ export class TemperatureConverter {
    * @return {Number} - The temperature in Fahrenheit
    */
   celsiusToFahrenheit(celsius) {
-    this.#inputValidation(celsius)
+    this.#inputValidator.validateInputType(celsius)
 
     const fahrenheit = (celsius * 1.8) + 32
     return fahrenheit
