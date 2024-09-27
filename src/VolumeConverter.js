@@ -19,11 +19,17 @@ export class VolumeConverter {
   #ptToLConversionRate
 
   /**
+   * Private field for the conversion rate from cups to deciliters.
+   */
+  cToDlConversionRate
+
+  /**
    * The constructor.
    */
   constructor() {
     this.#galToLConversionRate = 0.26417
     this.#ptToLConversionRate = 2.1134
+    this.cToDlConversionRate = 2.3658
   }
 
   /**
@@ -88,5 +94,31 @@ export class VolumeConverter {
 
     const pints = liters * this.#ptToLConversionRate
     return pints
+  }
+
+  /**
+   * Converts the volume from cups to deciliters.
+   * 
+   * @param {Number} cups - The volume to be converted
+   * @return {Number} - The volume in deciliters
+   */
+  cupsToDeciliters(cups) {
+    this.#inputValidation(cups)
+
+    const deciliters = cups * this.cToDlConversionRate
+    return deciliters
+  }
+
+  /**
+   * Converts the volume from deciliters to cups.
+   *
+   * @param {Number} deciliters - The volume to be converted
+   * @return {Number} - The volume in cups
+   */
+  decilitersToCups(deciliters) {
+    this.#inputValidation(deciliters)
+
+    const cups = deciliters / this.cToDlConversionRate
+    return cups
   }
 }
