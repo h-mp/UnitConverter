@@ -33,6 +33,28 @@ export class ConverterSystem {
   }
 
   /**
+   * Handles temperature conversion selection.
+   *
+   * @param {String} convertFrom - The unit to convert from
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @throws {Error} - If the conversion is not available
+   * @returns {Number} - The converted number
+   */
+  convertTemperature(convertFrom, convertTo, numberToConvert) {
+    switch (convertFrom.toLowerCase()) {
+      case 'celsius':
+      case 'c':
+        return this.#convertFromCelsius(convertTo, numberToConvert)
+      case 'fahrenheit':
+      case 'f':
+        return this.#convertFromFahrenheit(convertTo, numberToConvert)
+      default:
+        throw new Error('Conversion not available')
+      }
+    }
+
+  /**
    * Handles length conversion selection.
    *
    * @param {String} convertFrom - The unit to convert from
@@ -87,6 +109,42 @@ export class ConverterSystem {
         throw new Error('Conversion not available')
       }
     }
+
+  /**
+   * Converts the temperature in Celsius to the selected unit.
+   * 
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @throws {Error} - If the conversion is not available
+   * @returns {Number} - The converted number
+   */
+  #convertFromCelsius(convertTo, numberToConvert) {
+    switch(convertTo.toLowerCase()) {
+      case 'fahrenheit':
+      case 'f':
+        return this.#temperatureConverter.celsiusToFahrenheit(numberToConvert)
+      default:
+        throw new Error('Conversion not available')
+    }
+  }
+
+  /**
+   * Converts the temperature in Fahrenheit to the selected unit.
+   * 
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @throws {Error} - If the conversion is not available
+   * @returns {Number} - The converted number
+   */
+  #convertFromFahrenheit(convertTo, numberToConvert) {
+    switch(convertTo.toLowerCase()) {
+      case 'celsius':
+      case 'c':
+        return this.#temperatureConverter.fahrenheitToCelsius(numberToConvert)
+      default:
+        throw new Error('Conversion not available')
+    }
+  }
 
   /**
    * Converts the meters to the selected unit.
