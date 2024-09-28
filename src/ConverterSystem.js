@@ -33,6 +33,34 @@ export class ConverterSystem {
   }
 
   /**
+   * Handles length conversion selection.
+   *
+   * @param {String} convertFrom - The unit to convert from
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @throws {Error} - If the conversion is not available
+   * @returns {Number} - The converted number
+   */
+  convertLength(convertFrom, convertTo, numberToConvert) {
+    switch (convertFrom.toLowerCase()) {
+      case 'meters':
+      case 'm':
+        return this.#convertFromMeters(convertTo, numberToConvert)
+      case 'feet':
+      case 'ft':
+        return this.#convertFromFeet(convertTo, numberToConvert)
+      case 'centimeters':
+      case 'cm':
+        return this.#convertFromCentimeters(convertTo, numberToConvert)
+      case 'inches':
+      case 'in':
+        return this.#convertFromInches(convertTo, numberToConvert)
+      default:
+        throw new Error('Conversion not available')
+      }
+    }
+
+  /**
    * Handles weight conversion selection.
    *
    * @param {String} convertFrom - The unit to convert from
@@ -59,6 +87,78 @@ export class ConverterSystem {
         throw new Error('Conversion not available')
       }
     }
+
+  /**
+   * Converts the meters to the selected unit.
+   * 
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @throws {Error} - If the conversion is not available
+   * @returns {Number} - The converted number
+   */
+  #convertFromMeters(convertTo, numberToConvert) {
+    switch(convertTo.toLowerCase()) {
+      case 'feet':
+      case 'ft':
+        return this.#lengthConverter.metersToFeet(numberToConvert)
+      default:
+        throw new Error('Conversion not available')
+    }
+  }
+
+  /**
+   * Converts the feet to the selected unit.
+   * 
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @throws {Error} - If the conversion is not available
+   * @returns {Number} - The converted number
+   */
+  #convertFromFeet(convertTo, numberToConvert) {
+    switch(convertTo.toLowerCase()) {
+      case 'meters':
+      case 'm':
+        return this.#lengthConverter.feetToMeters(numberToConvert)
+      default:
+        throw new Error('Conversion not available')
+    }
+  }
+
+  /**
+   * Converts the centimeters to the selected unit.
+   * 
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @throws {Error} - If the conversion is not available
+   * @returns {Number} - The converted number
+   */
+  #convertFromCentimeters(convertTo, numberToConvert) {
+    switch(convertTo.toLowerCase()) {
+      case 'inches':
+      case 'in':
+        return this.#lengthConverter.centimetersToInches(numberToConvert)
+      default:
+        throw new Error('Conversion not available')
+    }
+  }
+
+  /**
+   * Converts the inches to the selected unit.
+   * 
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @throws {Error} - If the conversion is not available
+   * @returns {Number} - The converted number
+   */
+  #convertFromInches(convertTo, numberToConvert) {
+    switch(convertTo.toLowerCase()) {
+      case 'centimeters':
+      case 'cm':
+        return this.#lengthConverter.inchesToCentimeters(numberToConvert)
+      default:
+        throw new Error('Conversion not available')
+    }
+  }
 
   /**
    * Converts the kilograms to the selected unit.
