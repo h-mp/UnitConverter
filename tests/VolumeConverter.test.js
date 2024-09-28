@@ -4,7 +4,7 @@
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
-import { VolumeConverter } from '../src/VolumeConverter'
+import { VolumeConverter } from '../src/converters/VolumeConverter'
 
 const volumeConverter = new VolumeConverter()
 

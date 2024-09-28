@@ -4,7 +4,7 @@
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
-import { LengthConverter } from '../src/LengthConverter'
+import { LengthConverter } from '../src/converters/LengthConverter'
 
 const lengthConverter = new LengthConverter()
 
