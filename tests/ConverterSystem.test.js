@@ -8,6 +8,24 @@ import { ConverterSystem } from '../src/ConverterSystem'
 
 const converterSystem = new ConverterSystem()
 
+// Test cases for temperature conversion
+
+// Test case to check temperature conversion from Celsius
+test('Converting temperature from Celsius', () => {
+  expect(converterSystem.convertTemperature('c', 'fahrenheit', 18)).toBe(64.4)
+
+  expect(() => converterSystem.convertTemperature('celsius', 'kelvin', 21)).toThrowError('Conversion not available')
+})
+
+// Test case to check temperature conversion from Fahrenheit
+test('Converting temperature from Fahrenheit', () => {
+  expect(converterSystem.convertTemperature('f', 'celsius', 68)).toBe(20)
+
+  expect(() => converterSystem.convertTemperature('fahrenheit', 'k', 97)).toThrowError('Conversion not available')
+})
+
+// Test cases for length conversion
+
 // Test case to check length conversion from meters
 test('Converting length from meters', () => {
   expect(converterSystem.convertLength('m', 'feet', 2)).toBeCloseTo(6.561, 2)
@@ -35,6 +53,8 @@ test('Converting length from inches', () => {
 
   expect(() => converterSystem.convertLength('inches', 'feet', 24)).toThrowError('Conversion not available')
 })
+
+// Test cases for weight conversion
 
 // Test case to check weight conversion from kilograms 
 test('Converting weight from kilograms', () => {
