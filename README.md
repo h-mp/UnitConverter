@@ -1,9 +1,11 @@
 # Unit Conversion Module
 1dv610 Laboration 2
+
 Version 1.0.0
 
 ## Introduktion
 This module allows you to convert various units of measurement, currently temperature, weight, length, and volume, from units commonly used in the US to units typically used in Europe. 
+
 The module is currently only available in english.
 
 ## Available conversions
@@ -74,6 +76,7 @@ All methods take three parameters
 - String, the unit to convert to
 - Number, the number to convert
 
+
 Send full unit names as parameters...
 ```sh
 const convertedTemperature = converter.convertTemperature('celsius', 'fahrenheit', 56)
@@ -82,6 +85,7 @@ const convertedTemperature = converter.convertTemperature('celsius', 'fahrenheit
 ```sh
 const convertedTemperature = converter.convertTemperature('C', 'F', 56)
 ```
+
 
 Usage of upper or lower case letters does not matter.
 This
@@ -93,4 +97,14 @@ returns the same result as this
 const convertedWeight = converter.convertWeight('Kg', 'Lb', 24)
 ```
 
+The number can also be a decimal.
+
 ### Restrictions
+Only the previously listed available conversions can be used, the list is updated when new conversions are added. 
+
+When sending the full unit name as a parameter, write it in plural i.e kilograms, feet. Alternatively when using abbreviations write it in singular i.e kg, ft. 
+You can use the spellings of the available conversions listed previously as an example.
+
+Only the convertTemperature() method handles negative numbers. In all other methods you must use numbers over 0. 
+
+The convertTemperature only handles numbers above the abrolute freezing point (-273.15°C or -459.67°F).
