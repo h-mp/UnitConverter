@@ -8,15 +8,24 @@ import { InputValidator } from '../src/InputValidator.js'
 
 const inputValidator = new InputValidator()
 
-// Test case to check input type validation
-test('Validating input type', () => {
-  expect(() => inputValidator.validateInputType('string')).toThrowError('Input must be a number')
+// Test case to check input type number validation
+test('Validating input type number', () => {
+  expect(() => inputValidator.validateInputTypeNumber('string')).toThrowError('Input must be a number')
 
-  expect(() => inputValidator.validateInputType(NaN)).toThrowError('Input must be a number')
+  expect(() => inputValidator.validateInputTypeNumber(NaN)).toThrowError('Input must be a number')
 
-  expect(() => inputValidator.validateInputType(null)).toThrowError('Input must be a number')
+  expect(() => inputValidator.validateInputTypeNumber(null)).toThrowError('Input must be a number')
 
-  expect(() => inputValidator.validateInputType(undefined)).toThrowError('Input must be a number')
+  expect(() => inputValidator.validateInputTypeNumber(undefined)).toThrowError('Input must be a number')
+})
+
+// Test case to check input type string validation
+test('Validating input type string', () => {
+  expect(() => inputValidator.validateInputTypeString(1)).toThrowError('Input must be a string')
+
+  expect(() => inputValidator.validateInputTypeString([])).toThrowError('Input must be a string')
+
+  expect(() => inputValidator.validateInputTypeString(undefined)).toThrowError('Input must be a string')
 })
 
 // Test case to check positive number validation
