@@ -33,6 +33,19 @@ export class ConverterSystem {
   }
 
   /**
+   * Validates the inputs
+   * 
+   * @param {*} convertFrom - The input for the unit to convert from
+   * @param {*} convertTo - The input for the unit to convert to
+   * @param {*} numberToConvert - The input for the number to convert
+   */
+  #validateInputs(convertFrom, convertTo, numberToConvert) {
+    this.#inputValidator.validateInputTypeString(convertFrom)
+    this.#inputValidator.validateInputTypeString(convertTo)
+    this.#inputValidator.validateInputTypeNumber(numberToConvert)
+  }
+
+  /**
    * Handles temperature conversion selection and converts the number.
    *
    * @param {String} convertFrom - The unit to convert from
@@ -42,12 +55,16 @@ export class ConverterSystem {
    * @returns {Number} - The converted number
    */
   convertTemperature(convertFrom, convertTo, numberToConvert) {
+    this.#validateInputs(convertFrom, convertTo, numberToConvert)
+
     switch (convertFrom.toLowerCase()) {
       case 'celsius':
       case 'c':
+        this.#inputValidator.validateCelsiusRange(numberToConvert)
         return this.#convertFromCelsius(convertTo, numberToConvert)
       case 'fahrenheit':
       case 'f':
+        this.#inputValidator.validateFahrenheitRange(numberToConvert)
         return this.#convertFromFahrenheit(convertTo, numberToConvert)
       default:
         throw new Error('Conversion not available')
@@ -64,6 +81,9 @@ export class ConverterSystem {
    * @returns {Number} - The converted number
    */
   convertLength(convertFrom, convertTo, numberToConvert) {
+    this.#validateInputs(convertFrom, convertTo, numberToConvert)
+    this.#inputValidator.validatePositiveNumber(numberToConvert)
+
     switch (convertFrom.toLowerCase()) {
       case 'meters':
       case 'm':
@@ -92,6 +112,9 @@ export class ConverterSystem {
    * @returns {Number} - The converted number
    */
   convertWeight(convertFrom, convertTo, numberToConvert) {
+    this.#validateInputs(convertFrom, convertTo, numberToConvert)
+    this.#inputValidator.validatePositiveNumber(numberToConvert)
+
     switch (convertFrom.toLowerCase()) {
       case 'kilograms':
       case 'kg':
@@ -120,6 +143,9 @@ export class ConverterSystem {
    * @returns {Number} - The converted number
    */
   convertVolume(convertFrom, convertTo, numberToConvert) {
+    this.#validateInputs(convertFrom, convertTo, numberToConvert)
+    this.#inputValidator.validatePositiveNumber(numberToConvert)
+
     switch (convertFrom.toLowerCase()) {
       case 'liters':
       case 'l':
