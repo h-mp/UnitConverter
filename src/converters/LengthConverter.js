@@ -41,7 +41,7 @@ export class LengthConverter {
    * @param {*} input - The input
    */
   #validateInput(input) {
-    this.#inputValidator.validateInputType(input)
+    this.#inputValidator.validateInputTypeNumber(input)
     this.#inputValidator.validatePositiveNumber(input)
   }
 

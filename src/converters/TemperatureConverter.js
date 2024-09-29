@@ -23,13 +23,22 @@ export class TemperatureConverter {
   }
 
   /**
+   * Validates the input.
+   * 
+   * @param {*} input - The input
+   */
+  #validateInput(input) {
+    this.#inputValidator.validateInputTypeNumber(input)
+  }
+
+  /**
    * Converts the temperature from Fahrenheit to Celsius.
    *
    * @param {Number} fahrenheit - The temperature in Fahrenheit
    * @returns {Number} - The temperature in Celsius
    */
   fahrenheitToCelsius(fahrenheit) {
-    this.#inputValidator.validateInputType(fahrenheit)
+    this.#validateInput(fahrenheit)
 
     const celsius = (fahrenheit - 32) / 1.8
     return celsius
@@ -42,7 +51,7 @@ export class TemperatureConverter {
    * @return {Number} - The temperature in Fahrenheit
    */
   celsiusToFahrenheit(celsius) {
-    this.#inputValidator.validateInputType(celsius)
+    this.#validateInput(celsius)
 
     const fahrenheit = (celsius * 1.8) + 32
     return fahrenheit
