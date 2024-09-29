@@ -121,3 +121,8 @@ test('Check input validation in volume conversion', () => {
 
   expect(() => converterSystem.convertVolume('pints', [], 3)).toThrowError('Input must be a string')
 })
+
+// Test cases for multiple value conversion
+
+// Test case to check multiple value conversion
+test('Checking multiple value conversion')

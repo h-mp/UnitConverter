@@ -15,11 +15,11 @@ Det finns 48 tester totalt.
 ### InputValidator
 | Vad som testats | Hur det har testats | Testresultat |
 |----------------------------------|---------------------|--------------|
-| Validating input type number | Jest | OK |
-| Validating input type string | Jest | OK |
-| Validating positive number | Jest | OK |
-| Validating Celsius temperature range | Jest | OK |
-| Validating Fahrenheit temperature range | Jest | OK |
+| Validate input type number | Jest | OK |
+| Validate input type string | Jest | OK |
+| Validate positive number | Jest | OK |
+| Validate Celsius temperature range | Jest | OK |
+| Validate Fahrenheit temperature range | Jest | OK |
 
 ### ConverterSystem
 | Vad som testats | Hur det har testats | Testresultat |
@@ -36,54 +36,54 @@ Det finns 48 tester totalt.
 ### ConverterSelector
 | Vad som testats | Hur det har testats | Testresultat |
 |----------------------------------|---------------------|--------------|
-| Converting temperature from Celsius | Jest | OK |
-| Converting temperature from Fahrenheit | Jest | OK |
-| Converting length from meters | Jest | OK |
-| Converting length from feet | Jest | OK |
-| Converting length from centimeters | Jest | OK |
-| Converting length from inches | Jest | OK |
-| Converting weight from kilograms | Jest | OK |
-| Converting weight from pounds | Jest | OK |
-| Converting weight from grams | Jest | OK |
-| Converting weight from ounches | Jest | OK |
-| Converting volume from liters | Jest | OK |
-| Converting volume from gallons | Jest | OK |
-| Converting volume from pints | Jest | OK |
-| Converting volume from deciliters | Jest | OK |
-| Converting volume from cups | Jest | OK |
+| Convert temperature from Celsius | Jest | OK |
+| Convert temperature from Fahrenheit | Jest | OK |
+| Convert length from meters | Jest | OK |
+| Convert length from feet | Jest | OK |
+| Convert length from centimeters | Jest | OK |
+| Convert length from inches | Jest | OK |
+| Convert weight from kilograms | Jest | OK |
+| Convert weight from pounds | Jest | OK |
+| Convert weight from grams | Jest | OK |
+| Convert weight from ounches | Jest | OK |
+| Convert volume from liters | Jest | OK |
+| Convert volume from gallons | Jest | OK |
+| Convert volume from pints | Jest | OK |
+| Convert volume from deciliters | Jest | OK |
+| Convert volume from cups | Jest | OK |
 
 ### TemperatureConverter
 | Vad som testats | Hur det har testats | Testresultat |
 |----------------------------------|---------------------|--------------|
-| Converting Fahrenheit to Celsius | Jest | OK |
-| Converting Celsius to Fahrenheit | Jest | OK |
-| Validating input | Jest | OK |
+| Convert Fahrenheit to Celsius | Jest | OK |
+| Convert Celsius to Fahrenheit | Jest | OK |
+| Validate input | Jest | OK |
 
 ### LengthConverter
 | Vad som testats | Hur det har testats | Testresultat |
 |----------------------------------|---------------------|--------------|
-| Converting meters to feet | Jest | OK |
-| Converting feet to meters | Jest | OK |
-| Converting centimeters to inches | Jest | OK |
-| Converting inches to centimeters | Jest | OK |
-| Validating input | Jest | OK |
+| Convert meters to feet | Jest | OK |
+| Convert feet to meters | Jest | OK |
+| Convert centimeters to inches | Jest | OK |
+| Convert inches to centimeters | Jest | OK |
+| Validate input | Jest | OK |
 
 ### WeightConverter
 | Vad som testats | Hur det har testats | Testresultat |
 |----------------------------------|---------------------|--------------|
-| Converting kilograms to pounds | Jest | OK |
-| Converting pounds to kilograms | Jest | OK |
-| Converting grams to ounces | Jest | OK |
-| Converting ounces to grams | Jest | OK |
-| Validating input | Jest | OK |
+| Convert kilograms to pounds | Jest | OK |
+| Convert pounds to kilograms | Jest | OK |
+| Convert grams to ounces | Jest | OK |
+| Convert ounces to grams | Jest | OK |
+| Validate input | Jest | OK |
 
 ### VolumeConverter
 | Vad som testats | Hur det har testats | Testresultat |
 |----------------------------------|---------------------|--------------|
-| Converting gallons to liters | Jest | OK |
-| Converting liters to gallons | Jest | OK |
-| Converting pints to liters | Jest | OK |
-| Converting liters to pints | Jest | OK |
-| Converting cups to deciliters | Jest | OK |
-| Converting deciliters to cups | Jest | OK |
-| Validating input | Jest | OK |
+| Convert gallons to liters | Jest | OK |
+| Convert liters to gallons | Jest | OK |
+| Convert pints to liters | Jest | OK |
+| Convert liters to pints | Jest | OK |
+| Convert cups to deciliters | Jest | OK |
+| Convert deciliters to cups | Jest | OK |
+| Validate input | Jest | OK |
