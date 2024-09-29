@@ -51,10 +51,10 @@ The module is currently only available in english.
 
 ### Available methods
 All available methods:
-- convertTemperature( convertFrom, convertTo, numberToConvert )
-- convertLength( convertFrom, convertTo, numberToConvert )
-- convertWeight( convertFrom, convertTo, numberToConvert )
-- convertVolume( convertFrom, convertTo, numberToConvert )
+- **convertTemperature**( convertFrom, convertTo, numberToConvert )
+- **convertLength**( convertFrom, convertTo, numberToConvert )
+- **convertWeight**( convertFrom, convertTo, numberToConvert )
+- **convertVolume**( convertFrom, convertTo, numberToConvert )
 
 ```sh
 const converter = new ConverterSystem()
@@ -72,9 +72,9 @@ const convertedVolume = converter.convertVolume('deciliters', 'cups', 19)
 
 ### Parameters
 All methods take three parameters
-- String, the unit to convert from
-- String, the unit to convert to
-- Number, the number to convert
+- **String**, the unit to convert from
+- **String**, the unit to convert to
+- **Number**, the number to convert
 
 
 Send full unit names as parameters...
@@ -102,9 +102,9 @@ The number can also be a decimal.
 ### Restrictions
 Only the previously listed available conversions can be used, the list is updated when new conversions are added. 
 
-When sending the full unit name as a parameter, write it in plural i.e kilograms, feet. Alternatively when using abbreviations write it in singular i.e kg, ft. 
+When sending the full unit name as a parameter, write it in **plural i.e kilograms, feet**. Alternatively when using abbreviations write it in **singular i.e kg, ft**. 
 You can use the spellings of the available conversions listed previously as an example.
 
-Only the convertTemperature() method handles negative numbers. In all other methods you must use numbers over 0. 
+**Only the convertTemperature() method handles negative numbers.** In all other methods you must use numbers over 0. 
 
-The convertTemperature only handles numbers above the abrolute freezing point (-273.15°C or -459.67°F).
+The convertTemperature only handles numbers **above the absolute freezing point** (-273.15°C or -459.67°F).

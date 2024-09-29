@@ -1,11 +1,10 @@
 {
-  "name": "laboration-2",
+  "name": "1dv610-laboration-2",
   "version": "1.0.0",
-  "description": "",
+  "description": "A module for converting American measurements to units used in Europe and vice versa.",
   "type": "module",
-  "main": "src/app.js",
+  "main": "src/ConverterSystem.js",
   "scripts": {
-    "start": "node src/app.js",
     "test": "npx --node-options=--experimental-vm-modules jest || exit 0"
   },
   "author": "Hilja-Maria Paananen <hp222qn@student.lnu.se>",

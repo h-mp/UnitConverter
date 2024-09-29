@@ -6,7 +6,7 @@ För att köra testerna, använd följande kommando i terminalen:
 npm test
 ```
 
-De individuella testfallen för varje klass finns i /tests mappen. Varje klass har sin egen testfil. 
+De individuella Jest-testfallen för varje klass finns i /tests mappen. Varje klass har sin egen testfil. 
 
 Det finns 48 tester totalt.
 
