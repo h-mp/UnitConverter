@@ -83,3 +83,42 @@ test('Converting weight from ounces', () => {
 
   expect(() => converterSystem.convertWeight('ounces', 'kilograms', 3)).toThrowError('Conversion not available')
 })
+
+// Test cases for volume conversion
+
+// Test case to check volume conversion from liters 
+test('Converting volume from liters', () => {
+  expect(converterSystem.convertVolume('l', 'gallons', 12)).toBeCloseTo(3.170, 2)
+
+  expect(converterSystem.convertVolume('l', 'pints', 19)).toBeCloseTo(40.154, 2)
+
+  expect(() => converterSystem.convertVolume('liters', 'cups', 3)).toThrowError('Conversion not available')
+})
+
+// Test case to check volume conversion from gallons 
+test('Converting volume from gallons', () => {
+  expect(converterSystem.convertVolume('gal', 'liters', 6)).toBeCloseTo(22.712, 2)
+
+  expect(() => converterSystem.convertVolume('gallons', 'dl', 8)).toThrowError('Conversion not available')
+})
+
+// Test case to check volume conversion from pints 
+test('Converting volume from pints', () => {
+  expect(converterSystem.convertVolume('pt', 'liters', 31)).toBeCloseTo(14.668, 2)
+
+  expect(() => converterSystem.convertVolume('pints', 'cups', 28)).toThrowError('Conversion not available')
+})
+
+// Test case to check volume conversion from deciliters 
+test('Converting volume from deciliters', () => {
+  expect(converterSystem.convertVolume('dl', 'cups', 35)).toBeCloseTo(14.793, 2)
+
+  expect(() => converterSystem.convertVolume('deciliters', 'liters', 62)).toThrowError('Conversion not available')
+})
+
+// Test case to check volume conversion from cups 
+test('Converting volume from cups', () => {
+  expect(converterSystem.convertVolume('c', 'deciliters', 25)).toBeCloseTo(59.147, 2)
+
+  expect(() => converterSystem.convertVolume('cups', 'liters', 17)).toThrowError('Conversion not available')
+})
