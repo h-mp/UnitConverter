@@ -9,14 +9,26 @@
  */
 export class InputValidator {
   /**
-   * Validates the input type.
+   * Validates the input type number.
    *
    * @param {*} input - The input
    * @throws {Error} - If the input is not a number
    */
-  validateInputType(input) {
+  validateInputTypeNumber(input) {
     if (typeof input !== 'number' || isNaN(input)) {
       throw new Error('Input must be a number')
+    }
+  }
+
+  /**
+   * Validates the input type.
+   *
+   * @param {*} input - The input
+   * @throws {Error} - If the input is not a string
+   */
+  validateInputTypeString(input) {
+    if (typeof input !== 'string') {
+      throw new Error('Input must be a string')
     }
   }
 
