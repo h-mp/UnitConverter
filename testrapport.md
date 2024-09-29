@@ -8,7 +8,7 @@ npm test
 
 De individuella testfallen för varje klass finns i /tests mappen. Varje klass har sin egen testfil. 
 
-Det finns 44 tester totalt.
+Det finns 48 tester totalt.
 
 ## Testresultat
 
@@ -24,26 +24,33 @@ Det finns 44 tester totalt.
 ### ConverterSystem
 | Vad som testats | Hur det har testats | Testresultat |
 |----------------------------------|---------------------|--------------|
+| Check temperature conversion | Jest | OK |
+| Check input validation in temperature conversion | Jest | OK |
+| Check length conversion | Jest | OK |
+| Check input validation in length conversion | Jest | OK |
+| Check weight conversion | Jest | OK |
+| Check input validation in weight conversion | Jest | OK |
+| Check volume conversion | Jest | OK |
+| Check input validation in volume conversion | Jest | OK |
+
+### ConverterSelector
+| Vad som testats | Hur det har testats | Testresultat |
+|----------------------------------|---------------------|--------------|
 | Converting temperature from Celsius | Jest | OK |
 | Converting temperature from Fahrenheit | Jest | OK |
-| Check input validation in temperature conversion | Jest | OK |
 | Converting length from meters | Jest | OK |
 | Converting length from feet | Jest | OK |
 | Converting length from centimeters | Jest | OK |
 | Converting length from inches | Jest | OK |
-| Check input validation in length conversion | Jest | OK |
 | Converting weight from kilograms | Jest | OK |
 | Converting weight from pounds | Jest | OK |
 | Converting weight from grams | Jest | OK |
 | Converting weight from ounches | Jest | OK |
-| Check input validation in weight conversion | Jest | OK |
 | Converting volume from liters | Jest | OK |
 | Converting volume from gallons | Jest | OK |
 | Converting volume from pints | Jest | OK |
 | Converting volume from deciliters | Jest | OK |
 | Converting volume from cups | Jest | OK |
-| Check input validation in volume conversion | Jest | OK |
-
 
 ### TemperatureConverter
 | Vad som testats | Hur det har testats | Testresultat |
