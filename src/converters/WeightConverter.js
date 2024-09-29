@@ -6,13 +6,7 @@
 
 import { InputValidator } from '../InputValidator.js'
 
-/**
- * A class to convert weights.
- */
 export class WeightConverter {
-  /**
-   * The input validator.
-   */
   #inputValidator
 
   /**
@@ -25,9 +19,6 @@ export class WeightConverter {
    */
   #gToOzConversionRate
 
-  /**
-   * The constructor.
-   */
   constructor() {
     this.#inputValidator = new InputValidator()
     this.#kgToLbConversionRate = 2.2046

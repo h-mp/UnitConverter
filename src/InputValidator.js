@@ -4,9 +4,6 @@
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
-/**
- * A class to validate input.
- */
 export class InputValidator {
   /**
    * Validates the input type number.

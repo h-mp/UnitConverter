@@ -6,13 +6,7 @@
 
 import { InputValidator } from '../InputValidator.js'
 
-/**
- * A class to convert lengths.
- */
 export class LengthConverter {
-  /**
-   * The input validator.
-   */
   #inputValidator
 
   /**
@@ -25,9 +19,6 @@ export class LengthConverter {
    */
   #cmToInConversionRate
 
-  /**
-   * The constructor.
-   */
   constructor() {
     this.#inputValidator = new InputValidator()
 

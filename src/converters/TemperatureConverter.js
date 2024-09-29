@@ -6,18 +6,9 @@
 
 import { InputValidator } from '../InputValidator.js'
 
-/**
- * A class to convert temperatures.
- */
 export class TemperatureConverter {
-  /**
-   * The input validator.
-   */
   #inputValidator
 
-  /**
-   * The constructor.
-   */
   constructor() {
     this.#inputValidator = new InputValidator()
   }

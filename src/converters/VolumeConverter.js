@@ -6,13 +6,7 @@
 
 import { InputValidator } from '../InputValidator.js'
 
-/**
- * A class to convert volumes.
- */
 export class VolumeConverter {
-  /**
-   * The input validator.
-   */
   #inputValidator
 
   /**
@@ -30,9 +24,6 @@ export class VolumeConverter {
    */
   cToDlConversionRate
 
-  /**
-   * The constructor.
-   */
   constructor() {
     this.#inputValidator = new InputValidator()
     this.#galToLConversionRate = 0.26417

@@ -10,9 +10,6 @@ import { TemperatureConverter } from './converters/TemperatureConverter.js'
 import { VolumeConverter } from './converters/VolumeConverter.js'
 import { WeightConverter } from './converters/WeightConverter.js'
 
-/**
- * A class to handle all conversions.
- */
 export class ConverterSystem {
   #inputValidator
 
@@ -33,7 +30,7 @@ export class ConverterSystem {
   }
 
   /**
-   * Validates the inputs
+   * Validates the inputs.
    * 
    * @param {*} convertFrom - The input for the unit to convert from
    * @param {*} convertTo - The input for the unit to convert to
