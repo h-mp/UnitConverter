@@ -33,7 +33,7 @@ export class ConverterSystem {
   }
 
   /**
-   * Handles temperature conversion selection.
+   * Handles temperature conversion selection and converts the number.
    *
    * @param {String} convertFrom - The unit to convert from
    * @param {String} convertTo - The unit to convert to
@@ -55,7 +55,7 @@ export class ConverterSystem {
     }
 
   /**
-   * Handles length conversion selection.
+   * Handles length conversion selection and converts the number.
    *
    * @param {String} convertFrom - The unit to convert from
    * @param {String} convertTo - The unit to convert to
@@ -83,7 +83,7 @@ export class ConverterSystem {
     }
 
   /**
-   * Handles weight conversion selection.
+   * Handles weight conversion selection and converts the number.
    *
    * @param {String} convertFrom - The unit to convert from
    * @param {String} convertTo - The unit to convert to
@@ -105,6 +105,37 @@ export class ConverterSystem {
       case 'ounces':
       case 'oz':
         return this.#convertFromOunces(convertTo, numberToConvert)
+      default:
+        throw new Error('Conversion not available')
+      }
+    }
+
+  /**
+   * Handles volume conversion selection and converts the number.
+   *
+   * @param {String} convertFrom - The unit to convert from
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @throws {Error} - If the conversion is not available
+   * @returns {Number} - The converted number
+   */
+  convertVolume(convertFrom, convertTo, numberToConvert) {
+    switch (convertFrom.toLowerCase()) {
+      case 'liters':
+      case 'l':
+        return this.#convertFromLiters(convertTo, numberToConvert)
+      case 'gallons':
+      case 'gal':
+        return this.#convertFromGallons(convertTo, numberToConvert)
+      case 'pints':
+      case 'pt':
+        return this.#convertFromPints(convertTo, numberToConvert)
+      case 'deciliters':
+      case 'dl':
+        return this.#convertFromDeciliters(convertTo, numberToConvert)
+      case 'cups':
+      case 'c':
+        return this.#convertFromCups(convertTo, numberToConvert)
       default:
         throw new Error('Conversion not available')
       }
@@ -285,6 +316,99 @@ export class ConverterSystem {
       case 'grams':
       case 'g':
         return this.#weightConverter.ouncesToGrams(numberToConvert)
+      default:
+        throw new Error('Conversion not available')
+    }
+  }
+
+  /**
+   * Converts the liters to the selected unit.
+   * 
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @throws {Error} - If the conversion is not available
+   * @returns {Number} - The converted number
+   */
+  #convertFromLiters(convertTo, numberToConvert) {
+    switch(convertTo.toLowerCase()) {
+      case 'gallons':
+      case 'gal':
+        return this.#volumeConverter.litersToGallons(numberToConvert)
+      case 'pints':
+      case 'pt':
+        return this.#volumeConverter.litersToPints(numberToConvert)
+      default:
+        throw new Error('Conversion not available')
+    }
+  }
+
+  /**
+   * Converts the gallons to the selected unit.
+   * 
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @throws {Error} - If the conversion is not available
+   * @returns {Number} - The converted number
+   */
+  #convertFromGallons(convertTo, numberToConvert) {
+    switch(convertTo.toLowerCase()) {
+      case 'liters':
+      case 'l':
+        return this.#volumeConverter.gallonsToLiters(numberToConvert)
+      default:
+        throw new Error('Conversion not available')
+    }
+  }
+
+  /**
+   * Converts the pints to the selected unit.
+   * 
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @throws {Error} - If the conversion is not available
+   * @returns {Number} - The converted number
+   */
+  #convertFromPints(convertTo, numberToConvert) {
+    switch(convertTo.toLowerCase()) {
+      case 'liters':
+      case 'l':
+        return this.#volumeConverter.pintsToLiters(numberToConvert)
+      default:
+        throw new Error('Conversion not available')
+    }
+  }
+
+  /**
+   * Converts the deciliters to the selected unit.
+   * 
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @throws {Error} - If the conversion is not available
+   * @returns {Number} - The converted number
+   */
+  #convertFromDeciliters(convertTo, numberToConvert) {
+    switch(convertTo.toLowerCase()) {
+      case 'cups':
+      case 'c':
+        return this.#volumeConverter.decilitersToCups(numberToConvert)
+      default:
+        throw new Error('Conversion not available')
+    }
+  }
+
+  /**
+   * Converts the cups to the selected unit.
+   * 
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @throws {Error} - If the conversion is not available
+   * @returns {Number} - The converted number
+   */
+  #convertFromCups(convertTo, numberToConvert) {
+    switch(convertTo.toLowerCase()) {
+      case 'deciliters':
+      case 'dl':
+        return this.#volumeConverter.cupsToDeciliters(numberToConvert)
       default:
         throw new Error('Conversion not available')
     }
