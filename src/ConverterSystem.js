@@ -90,6 +90,41 @@ export class ConverterSystem {
   }
 
   /**
+   * Handles length conversion selection and converts the number.
+   *
+   * @param {String} convertFrom - The unit to convert from
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @throws {Error} - If the conversion is not available
+   * @returns {Number} - The converted number
+   */
+  convertSpeed(convertFrom, convertTo, numberToConvert) {
+    this.#validateInputs(convertFrom, convertTo, numberToConvert)
+    this.#inputValidator.validatePositiveNumber(numberToConvert)
+
+    switch (convertFrom.toLowerCase()) {
+      case 'miles per hour':
+      case 'mph':
+      case 'mi/h':
+        return this.#converterSelector.convertFromMilesPerHour(convertTo, numberToConvert)
+      case 'kilometers per hour':
+      case 'kmph':
+      case 'km/h':
+        return this.#converterSelector.convertFromKilometersPerHour(convertTo, numberToConvert)
+      case 'feet per second':
+      case 'fps':
+      case 'ft/s':
+        return this.#converterSelector.convertFromFeetPerSecond(convertTo, numberToConvert)
+      case 'meters per second':
+      case 'mps':
+      case 'm/s':
+        return this.#converterSelector.convertFromMetersPerSecond(convertTo, numberToConvert)
+      default:
+        throw new Error('Conversion not available')
+    }
+  }
+
+  /**
    * Handles weight conversion selection and converts the number.
    *
    * @param {String} convertFrom - The unit to convert from
