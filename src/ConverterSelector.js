@@ -8,21 +8,25 @@ import { LengthConverter } from './converters/LengthConverter.js'
 import { TemperatureConverter } from './converters/TemperatureConverter.js'
 import { VolumeConverter } from './converters/VolumeConverter.js'
 import { WeightConverter } from './converters/WeightConverter.js'
+import { SpeedConverter } from './converters/SpeedConverter.js'
 
 export class ConverterSelector {
-  #lengthConverter
-
   #temperatureConverter
 
-  #volumeConverter
+  #lengthConverter
+
+  #speedComverter
 
   #weightConverter
 
+  #volumeConverter
+
   constructor() {
-    this.#lengthConverter = new LengthConverter()
     this.#temperatureConverter = new TemperatureConverter()
-    this.#volumeConverter = new VolumeConverter()
+    this.#lengthConverter = new LengthConverter()
+    this.#speedComverter = new SpeedConverter()
     this.#weightConverter = new WeightConverter()
+    this.#volumeConverter = new VolumeConverter()
   }
 
   /**
@@ -128,6 +132,82 @@ export class ConverterSelector {
       case 'centimeters':
       case 'cm':
         return this.#lengthConverter.inchesToCentimeters(numberToConvert)
+      default:
+        throw new Error('Conversion not available')
+    }
+  }
+
+  /**
+   * Converts the miles per hour to the selected unit.
+   * 
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @throws {Error} - If the conversion is not available
+   * @returns {Number} - The converted number
+   */
+  convertFromMilesPerHour(convertTo, numberToConvert) {
+    switch(convertTo.toLowerCase()) {
+      case 'kilometers per hour':
+      case 'kmph':
+      case 'km/h':
+        return this.#speedComverter.milesPerHourToKilometersPerHour(numberToConvert)
+      default:
+        throw new Error('Conversion not available')
+    }
+  }
+
+  /**
+   * Converts the kilometers per hour to the selected unit.
+   * 
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @throws {Error} - If the conversion is not available
+   * @returns {Number} - The converted number
+   */
+  convertFromKilometersPerHour(convertTo, numberToConvert) {
+    switch(convertTo.toLowerCase()) {
+      case 'miles per hour':
+      case 'mph':
+      case 'mi/h':
+        return this.#speedComverter.kilometersPerHourToMilesPerHour(numberToConvert)
+      default:
+        throw new Error('Conversion not available')
+    }
+  }
+
+  /**
+   * Converts the feet per second to the selected unit.
+   * 
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @throws {Error} - If the conversion is not available
+   * @returns {Number} - The converted number
+   */
+  convertFromFeetPerSecond(convertTo, numberToConvert) {
+    switch(convertTo.toLowerCase()) {
+      case 'meters per second':
+      case 'mps':
+      case 'm/s':
+        return this.#speedComverter.feetPerSecondToMetersPerSecond(numberToConvert)
+      default:
+        throw new Error('Conversion not available')
+    }
+  }
+
+  /**
+   * Converts the meters per second to the selected unit.
+   * 
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @throws {Error} - If the conversion is not available
+   * @returns {Number} - The converted number
+   */
+  convertFromMetersPerSecond(convertTo, numberToConvert) {
+    switch(convertTo.toLowerCase()) {
+      case 'feet per second':
+      case 'fps':
+      case 'ft/s':
+        return this.#speedComverter.metersPerSecondToFeetPerSecond(numberToConvert)
       default:
         throw new Error('Conversion not available')
     }
