@@ -55,8 +55,8 @@ export class ConverterSystem {
         return this.#converterSelector.convertFromFahrenheit(convertTo, numberToConvert)
       default:
         throw new Error('Conversion not available')
-      }
     }
+  }
 
   /**
    * Handles length conversion selection and converts the number.
@@ -86,8 +86,8 @@ export class ConverterSystem {
         return this.#converterSelector.convertFromInches(convertTo, numberToConvert)
       default:
         throw new Error('Conversion not available')
-      }
     }
+  }
 
   /**
    * Handles weight conversion selection and converts the number.
@@ -117,8 +117,8 @@ export class ConverterSystem {
         return this.#converterSelector.convertFromOunces(convertTo, numberToConvert)
       default:
         throw new Error('Conversion not available')
-      }
     }
+  }
 
   /**
    * Handles volume conversion selection and converts the number.
@@ -151,6 +151,31 @@ export class ConverterSystem {
         return this.#converterSelector.convertFromCups(convertTo, numberToConvert)
       default:
         throw new Error('Conversion not available')
-      }
     }
+  }
+
+  /**
+   * Handles multiple value conversion selection and converts the numbers.
+   * 
+   * @param {String} conversionType - The type of conversion i.e. temperature, length, weight, volume
+   * @param {String} convertFrom - The unit to convert from
+   * @param {String} convertTo - The unit to convert to
+   * @param {Array} numbersToConvert - The numbers to convert
+   * @throws {Error} - If the conversion is not available
+   * @returns {Array} - The converted numbers
+   */
+  convertMultipleValues(conversionType, convertFrom, convertTo, numbersToConvert) {
+    switch (conversionType.toLowerCase()) {
+      case 'temperature':
+        return numbersToConvert.map(number => this.convertTemperature(convertFrom, convertTo, number))
+      case 'length':
+        return numbersToConvert.map(number => this.convertLength(convertFrom, convertTo, number))
+      case 'weight':
+        return numbersToConvert.map(number => this.convertWeight(convertFrom, convertTo, number))
+      case 'volume':
+        return numbersToConvert.map(number => this.convertVolume(convertFrom, convertTo, number))
+      default:
+        throw new Error('Conversion not available')
+    }
+  }
 }
