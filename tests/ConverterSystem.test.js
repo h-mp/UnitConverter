@@ -124,5 +124,38 @@ test('Check input validation in volume conversion', () => {
 
 // Test cases for multiple value conversion
 
-// Test case to check multiple value conversion
-test('Checking multiple value conversion')
+// Test case to check multiple temperature value conversion
+test('Check multiple temperature value conversion', () => {
+  const result = converterSystem.convertMultipleValues('temperature', 'f', 'c', [32, 0, -40])
+  const expected = [0, -17.778, -40]
+  result.forEach((value, index) => {
+    expect(value).toBeCloseTo(expected[index], 2)
+  })
+})
+
+// Test case to check multiple length value conversion
+test('Check multiple length value conversion', () => {
+  const result = converterSystem.convertMultipleValues('length', 'm', 'ft', [2, 23, 28])
+  const expected = [6.561, 75.459, 91.863]
+  result.forEach((value, index) => {
+    expect(value).toBeCloseTo(expected[index], 2)
+  })
+})
+
+// Test case to check multiple weight value conversion
+test('Check multiple weight value conversion', () => {
+  const result = converterSystem.convertMultipleValues('weight', 'kg', 'pounds', [2, 3, 28])
+  const expected = [4.409, 6.614, 61.729]
+  result.forEach((value, index) => {
+    expect(value).toBeCloseTo(expected[index], 2)
+  })
+})
+
+// Test case to check multiple volume value conversion
+test('Check multiple volume value conversion', () => {
+  const result = converterSystem.convertMultipleValues('volume', 'l', 'gallons', [2, 13, 28])
+  const expected = [0.528, 3.434, 7.396]
+  result.forEach((value, index) => {
+    expect(value).toBeCloseTo(expected[index], 2)
+  })
+})
