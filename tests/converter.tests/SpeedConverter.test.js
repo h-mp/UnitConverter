@@ -4,7 +4,7 @@
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
-import { SpeedConverter } from '../src/converters/SpeedConverter'
+import { SpeedConverter } from '../../src/converters/SpeedConverter'
 
 const speedConverter = new SpeedConverter()
 
