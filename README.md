@@ -3,8 +3,12 @@
 
 Version 1.0.0
 
+License MIT
+
 ## Introduktion
-This module allows you to convert various units of measurement, currently temperature, weight, length, and volume, from units commonly used in the US to units typically used in Europe. 
+This module allows you to convert various units of measurement, including temperature, length, speed, weight, and volume, between metric units (commonly used in Europe) and imperial units (commonly used in the US). The module can also convert multiple values of the same conversion.
+
+The module can be integrated into for example recipe, fitness and health, weather, and travel applications.
 
 The module is currently only available in english.
 
@@ -26,6 +30,15 @@ The module is currently only available in english.
 | Centimeters (Cm) | Inches (In) |
 | Inches (In) | Centimeters (Cm) |
 
+### Speed
+
+| From | To |
+|------|----|
+| Miles per hour (Mph, Mi/h) | Kilometers per hour (Kmph, Km/h) |
+| Kilometers per hour (Kmph, Km/h) | Miles per hour (Mph, Mi/h) |
+| Feet per second (Fps, F/s) | Meters per second (Mps, M/s) |
+| Meters per second (Mps, M/s) | Feet per second (Fps, F/s) |
+
 ### Weight
 
 | From | To |
@@ -46,58 +59,128 @@ The module is currently only available in english.
 | Deciliters (Dl) | Cups (c) |
 | Cups (c) | Deciliters (Dl) |
 
+## Installation
+
 
 ## How to use
 
+The `ConverterSystem` class provides methods to convert various units of measurement between metric and imperial systems.
+
 ### Available methods
-All available methods:
+
+All available methods (more specific descriptions below):
 - **convertTemperature**( convertFrom, convertTo, numberToConvert )
 - **convertLength**( convertFrom, convertTo, numberToConvert )
+- **convertSpeed**( convertFrom, convertTo, numberToConvert )
 - **convertWeight**( convertFrom, convertTo, numberToConvert )
 - **convertVolume**( convertFrom, convertTo, numberToConvert )
+- **convertMultipleValues**( conversionType, convertFrom, convertTo, numbersToConvert )
 
-```sh
+```javascript
 const converter = new ConverterSystem()
 
-// All available methods:
+// Examples of use for all available methods:
 
 const convertedTemperature = converter.convertTemperature('celsius', 'fahrenheit', 56)
 
 const convertedLength = converter.convertLength('m', 'ft', 13)
 
+const convertedLength = converter.convertSpeed('mph', 'km/h', 56)
+
 const convertedWeight = converter.convertWeight('kg', 'lb', 24)
 
 const convertedVolume = converter.convertVolume('deciliters', 'cups', 19)
+
+const convertedValues = converter.convertMultipleValues('length', 'cm', 'in', [7, 12, 35, 42])
 ```
+
+Specific descriptions for each method:
+
+- **convertTemperature**( convertFrom, convertTo, numberToConvert )
+  - **Parameters:**
+    - `convertFrom` (String): The unit to convert from (e.g., 'C', 'F').
+    - `convertTo` (String): The unit to convert to (e.g., 'F', 'C').
+    - `numberToConvert` (Number): The number to convert.
+  - **Returns:** (Number) The converted temperature.
+
+- **convertLength**( convertFrom, convertTo, numberToConvert )
+  - **Parameters:**
+    - `convertFrom` (String): The unit to convert from (e.g., 'ft', 'cm').
+    - `convertTo` (String): The unit to convert to (e.g., 'm', 'in').
+    - `numberToConvert` (Number): The number to convert.
+  - **Returns:** (Number) The converted length.
+
+- **convertSpeed**( convertFrom, convertTo, numberToConvert )
+  - **Parameters:**
+    - `convertFrom` (String): The unit to convert from (e.g., 'mph', 'm/s').
+    - `convertTo` (String): The unit to convert to (e.g., 'km/h', 'fps').
+    - `numberToConvert` (Number): The number to convert.
+  - **Returns:** (Number) The converted speed.
+
+- **convertWeight**( convertFrom, convertTo, numberToConvert )
+  - **Parameters:**
+    - `convertFrom` (String): The unit to convert from (e.g., 'kg', 'oz').
+    - `convertTo` (String): The unit to convert to (e.g., 'lb', 'g').
+    - `numberToConvert` (Number): The number to convert.
+  - **Returns:** (Number) The converted weight.
+
+- **convertVolume**( convertFrom, convertTo, numberToConvert )
+  - **Parameters:**
+    - `convertFrom` (String): The unit to convert from (e.g., 'l', 'dl').
+    - `convertTo` (String): The unit to convert to (e.g., 'gal', 'c').
+    - `numberToConvert` (Number): The number to convert.
+  - **Returns:** (Number) The converted volume.
+
+- **convertMultipleValues**( conversionType, convertFrom, convertTo, numbersToConvert )
+ - **Parameters:**
+    - `conversionType` (String): The type of conversion (e.g., 'temperature', 'length').
+    - `convertFrom` (String): The unit to convert from (e.g., 'C', 'm').
+    - `convertTo` (String): The unit to convert to (e.g., 'F', 'ft').
+    - `numbersToConvert` (Array): The array of numbers to convert.
+  - **Returns:** (Array) The array of converted numbers.
 
 ### Parameters
-All methods take three parameters
-- **String**, the unit to convert from
-- **String**, the unit to convert to
+The methods to convert a single value take three parameters
+- **String**, the unit to convert from (i.e kg, in, l, C)
+- **String**, the unit to convert to (i.e lb, cm, gal, F)
 - **Number**, the number to convert
 
-
-Send full unit names as parameters...
-```sh
-const convertedTemperature = converter.convertTemperature('celsius', 'fahrenheit', 56)
+```javascript
+const convertedTemperature = converter.convertTemperature('C', 'F', 35)
+// Output: 95
 ```
-...or use abbreviations.
-```sh
+
+The method to convert multiple values takes four parameters
+- **String**, the conversion type i.e temperature, length, weight, volume
+- **String**, the unit to convert from (i.e kg, in, l, C)
+- **String**, the unit to convert to (i.e lb, cm, gal, F)
+- **Array**, the array of numbers to convert
+
+```javascript
+const convertedValue = converter.convertMultipleValues('temperature', 'C', 'F', [-40, -20, 35, 50])
+// Output: [-40, -4, 95, 122]
+```
+
+
+Both full unit names and abbreviations work as parameters.
+```javascript
+const convertedTemperature = converter.convertTemperature('celsius', 'fahrenheit', 56)
+
 const convertedTemperature = converter.convertTemperature('C', 'F', 56)
 ```
 
 
 Usage of upper or lower case letters does not matter.
-This
-```sh
+This...
+```javascript
 const convertedWeight = converter.convertWeight('kg', 'lb', 24)
 ```
-returns the same result as this
-```sh
+...returns the same result as this
+```javascript
 const convertedWeight = converter.convertWeight('Kg', 'Lb', 24)
 ```
 
-The number can also be a decimal.
+The number parameter can also be a decimal.
 
 ### Restrictions
 Only the previously listed available conversions can be used, the list is updated when new conversions are added. 
