@@ -32,6 +32,10 @@ Det finns 48 tester totalt.
 | Check input validation in weight conversion | Jest | OK |
 | Check volume conversion | Jest | OK |
 | Check input validation in volume conversion | Jest | OK |
+| Check multiple temperature value conversion | Jest | OK |
+| Check multiple length value conversion | Jest | OK |
+| Check multiple weight value conversion | Jest | OK |
+| Check multiple volume value conversion | Jest | OK |
 
 ### ConverterSelector
 | Vad som testats | Hur det har testats | Testresultat |
