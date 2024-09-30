@@ -6,9 +6,9 @@ För att köra testerna, använd följande kommando i terminalen:
 npm test
 ```
 
-De individuella Jest-testfallen för varje klass finns i /tests mappen. Varje klass har sin egen testfil. 
+De individuella Jest-testfallen för varje klass finns i /tests mappen. Varje klass har sin egen testfil och varje metod har testats.
 
-Det finns 48 tester totalt.
+Det finns 63 tester totalt.
 
 ## Testresultat
 
@@ -28,6 +28,8 @@ Det finns 48 tester totalt.
 | Check input validation in temperature conversion | Jest | OK |
 | Check length conversion | Jest | OK |
 | Check input validation in length conversion | Jest | OK |
+| Check speed conversion | Jest | OK |
+| Check input validation in speed conversion | Jest | OK |
 | Check weight conversion | Jest | OK |
 | Check input validation in weight conversion | Jest | OK |
 | Check volume conversion | Jest | OK |
@@ -46,6 +48,10 @@ Det finns 48 tester totalt.
 | Convert length from feet | Jest | OK |
 | Convert length from centimeters | Jest | OK |
 | Convert length from inches | Jest | OK |
+| Convert speed from miles per hour | Jest | OK |
+| Convert speed from kilometers per hour | Jest | OK |
+| Convert speed from feet per second | Jest | OK |
+| Convert speed from meters per second | Jest | OK |
 | Convert weight from kilograms | Jest | OK |
 | Convert weight from pounds | Jest | OK |
 | Convert weight from grams | Jest | OK |
@@ -70,6 +76,15 @@ Det finns 48 tester totalt.
 | Convert feet to meters | Jest | OK |
 | Convert centimeters to inches | Jest | OK |
 | Convert inches to centimeters | Jest | OK |
+| Validate input | Jest | OK |
+
+### SpeedConverter
+| Vad som testats | Hur det har testats | Testresultat |
+|----------------------------------|---------------------|--------------|
+| Convert miles per hour to kilometers per hour | Jest | OK |
+| Convert kilometers per hour to miles per hour | Jest | OK |
+| Convert feet per second to meters per second | Jest | OK |
+| Convert meters per second to feet per second | Jest | OK |
 | Validate input | Jest | OK |
 
 ### WeightConverter
