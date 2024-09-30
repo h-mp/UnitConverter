@@ -62,6 +62,34 @@ test('Check input validation in length conversion', () => {
   expect(() => converterSystem.convertLength('m', [], 3)).toThrowError('Input must be a string')
 })
 
+// Test cases for speed conversion
+
+// Test case to check speed conversion
+test('Check speed conversion', () => {
+  expect(converterSystem.convertSpeed('mph', 'km/h', 60)).toBeCloseTo(96.56, 2)
+
+  expect(converterSystem.convertSpeed('kmph', 'mph', 100)).toBeCloseTo(62.14, 2)
+
+  expect(converterSystem.convertSpeed('fps', 'm/s', 60)).toBeCloseTo(18.288, 2)
+
+  expect(converterSystem.convertSpeed('m/s', 'fps', 60)).toBeCloseTo(196.85, 2)
+
+  expect(() => converterSystem.convertSpeed('mph', 'm/s', 60)).toThrowError('Conversion not available')
+})
+
+// Test case to check input validation in speed conversion
+test('Check input validation in speed conversion', () => {
+  expect(() => converterSystem.convertSpeed('mph', 'km/h', -20)).toThrowError('Number must be positive')
+
+  expect(() => converterSystem.convertSpeed('mph', 'km/h', 'string')).toThrowError('Input must be a number')
+
+  expect(() => converterSystem.convertSpeed('kmph', 'mi/h', NaN)).toThrowError('Input must be a number')
+
+  expect(() => converterSystem.convertSpeed(2, 'fps', 3)).toThrowError('Input must be a string')
+
+  expect(() => converterSystem.convertSpeed('m/s', [], 3)).toThrowError('Input must be a string')
+})
+
 // Test cases for weight conversion
 
 // Test case to check weight conversion
