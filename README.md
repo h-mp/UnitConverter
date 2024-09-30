@@ -68,7 +68,7 @@ The `ConverterSystem` class provides methods to convert various units of measure
 
 ### Available methods
 
-All available methods (more specific descriptions below):
+All available methods (more specific descriptions further down):
 - **convertTemperature**( convertFrom, convertTo, numberToConvert )
 - **convertLength**( convertFrom, convertTo, numberToConvert )
 - **convertSpeed**( convertFrom, convertTo, numberToConvert )
@@ -85,7 +85,7 @@ const convertedTemperature = converter.convertTemperature('celsius', 'fahrenheit
 
 const convertedLength = converter.convertLength('m', 'ft', 13)
 
-const convertedLength = converter.convertSpeed('mph', 'km/h', 56)
+const convertedSpeed = converter.convertSpeed('mph', 'km/h', 56)
 
 const convertedWeight = converter.convertWeight('kg', 'lb', 24)
 
@@ -94,7 +94,7 @@ const convertedVolume = converter.convertVolume('deciliters', 'cups', 19)
 const convertedValues = converter.convertMultipleValues('length', 'cm', 'in', [7, 12, 35, 42])
 ```
 
-Specific descriptions for each method:
+More specific description for each method:
 
 - **convertTemperature**( convertFrom, convertTo, numberToConvert )
   - **Parameters:**
@@ -132,11 +132,11 @@ Specific descriptions for each method:
   - **Returns:** (Number) The converted volume.
 
 - **convertMultipleValues**( conversionType, convertFrom, convertTo, numbersToConvert )
- - **Parameters:**
-    - `conversionType` (String): The type of conversion (e.g., 'temperature', 'length').
-    - `convertFrom` (String): The unit to convert from (e.g., 'C', 'm').
-    - `convertTo` (String): The unit to convert to (e.g., 'F', 'ft').
-    - `numbersToConvert` (Array): The array of numbers to convert.
+  - **Parameters:**
+      - `conversionType` (String): The type of conversion (e.g., 'temperature', 'length').
+      - `convertFrom` (String): The unit to convert from (e.g., 'C', 'm').
+      - `convertTo` (String): The unit to convert to (e.g., 'F', 'ft').
+      - `numbersToConvert` (Array): The array of numbers to convert.
   - **Returns:** (Array) The array of converted numbers.
 
 ### Parameters
@@ -161,6 +161,7 @@ const convertedValue = converter.convertMultipleValues('temperature', 'C', 'F', 
 // Output: [-40, -4, 95, 122]
 ```
 
+<br>
 
 Both full unit names and abbreviations work as parameters.
 ```javascript
@@ -185,7 +186,7 @@ The number parameter can also be a decimal.
 ### Restrictions
 Only the previously listed available conversions can be used, the list is updated when new conversions are added. 
 
-When sending the full unit name as a parameter, write it in **plural i.e kilograms, feet**. Alternatively when using abbreviations write it in **singular i.e kg, ft**. 
+When sending the full unit name as a parameter, write it in **plural** (i.e kilograms, feet). Alternatively when using abbreviations write it in **singular** (i.e kg, ft). 
 You can use the spellings of the available conversions listed previously as an example.
 
 **Only the convertTemperature() method handles negative numbers.** In all other methods you must use numbers over 0. 
