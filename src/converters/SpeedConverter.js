@@ -12,18 +12,18 @@ export class SpeedConverter {
   /**
    * Conversion rate from miles/hour to kilometers/hour.
    */
-  #mphToKphConversionRate
+  #mphToKmphConversionRate
 
   /**
    * Conversion rate fron feet/second to meters/second.
    */
-  #ftsToMsConversionRate
+  #fpsToMpsConversionRate
 
   constructor() {
     this.#inputValidator = new InputValidator()
 
-    this.#mphToKphConversionRate = 1.609344
-    this.#ftsToMsConversionRate = 3.280840
+    this.#mphToKmphConversionRate = 1.609344
+    this.#fpsToMpsConversionRate = 3.280840
   }
 
   /**
@@ -45,7 +45,7 @@ export class SpeedConverter {
   milesPerHourToKilometersPerHour(milesPerHour) {
     this.#validateInput(milesPerHour)
 
-    const kilometersPerHour = milesPerHour * this.#mphToKphConversionRate
+    const kilometersPerHour = milesPerHour * this.#mphToKmphConversionRate
     return kilometersPerHour
   }
 
@@ -58,7 +58,7 @@ export class SpeedConverter {
   kilometersPerHourToMilesPerHour(kilometersPerHour) {
     this.#validateInput(kilometersPerHour)
 
-    const milesPerHour = kilometersPerHour / this.#mphToKphConversionRate
+    const milesPerHour = kilometersPerHour / this.#mphToKmphConversionRate
     return milesPerHour
   }
 
@@ -71,7 +71,7 @@ export class SpeedConverter {
   feetPerSecondToMetersPerSecond(feetPerSecond) {
     this.#validateInput(feetPerSecond)
 
-    const metersPerSecond = feetPerSecond / this.#ftsToMsConversionRate
+    const metersPerSecond = feetPerSecond / this.#fpsToMpsConversionRate
     return metersPerSecond
   }
 
@@ -84,7 +84,7 @@ export class SpeedConverter {
   metersPerSecondToFeetPerSecond(metersPerSecond) {
     this.#validateInput(metersPerSecond)
 
-    const feetPerSecond = metersPerSecond * this.#ftsToMsConversionRate
+    const feetPerSecond = metersPerSecond * this.#fpsToMpsConversionRate
     return feetPerSecond
   }
 }
