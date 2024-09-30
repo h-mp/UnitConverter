@@ -58,6 +58,36 @@ test('Convert length from inches', () => {
   expect(() => converterSelector.convertFromInches('feet', 24)).toThrowError('Conversion not available')
 })
 
+// Test cases for speed conversion
+
+// Test case to check speed conversion from miles per hour
+test('Convert speed from miles per hour', () => {
+  expect(converterSelector.convertFromMilesPerHour('kilometers per hour', 60)).toBeCloseTo(96.56, 2)
+
+  expect(() => converterSelector.convertFromMilesPerHour('meters per second', 60)).toThrowError('Conversion not available')
+})
+
+// Test case to check speed conversion from kilometers per hour
+test('Convert speed from kilometers per hour', () => {
+  expect(converterSelector.convertFromKilometersPerHour('miles per hour', 100)).toBeCloseTo(62.14, 2)
+
+  expect(() => converterSelector.convertFromKilometersPerHour('feet per second', 60)).toThrowError('Conversion not available')
+})
+
+// Test case to check speed conversion from feet per second
+test('Convert speed from feet per second', () => {
+  expect(converterSelector.convertFromFeetPerSecond('meters per second', 60)).toBeCloseTo(18.288, 2)
+
+  expect(() => converterSelector.convertFromFeetPerSecond('feet per hour', 60)).toThrowError('Conversion not available')
+})
+
+// Test case to check speed conversion from meters per second
+test('Convert speed from meters per second', () => {
+  expect(converterSelector.convertFromMetersPerSecond('feet per second', 60)).toBeCloseTo(196.85, 2)
+
+  expect(() => converterSelector.convertFromMetersPerSecond('miles per hour', 60)).toThrowError('Conversion not available')
+})
+
 // Test cases for weight conversion
 
 // Test case to check weight conversion from kilograms 
