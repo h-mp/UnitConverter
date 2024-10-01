@@ -12,9 +12,19 @@ export class ConverterSystem {
 
   #converterSelector
 
+  #conversionMethods
+
   constructor() {
     this.#inputValidator = new InputValidator()
     this.#converterSelector = new ConverterSelector()
+
+    this.#conversionMethods = {
+      temperature: this.convertTemperature.bind(this),
+      length: this.convertLength.bind(this),
+      speed: this.convertSpeed.bind(this),
+      weight: this.convertWeight.bind(this),
+      volume: this.convertVolume.bind(this)
+    }
   }
 
   /**
@@ -200,17 +210,39 @@ export class ConverterSystem {
    * @returns {Array} - The converted numbers
    */
   convertMultipleValues(conversionType, convertFrom, convertTo, numbersToConvert) {
-    switch (conversionType.toLowerCase()) {
-      case 'temperature':
-        return numbersToConvert.map(number => this.convertTemperature(convertFrom, convertTo, number))
-      case 'length':
-        return numbersToConvert.map(number => this.convertLength(convertFrom, convertTo, number))
-      case 'weight':
-        return numbersToConvert.map(number => this.convertWeight(convertFrom, convertTo, number))
-      case 'volume':
-        return numbersToConvert.map(number => this.convertVolume(convertFrom, convertTo, number))
-      default:
-        throw new Error('Conversion not available')
+    const conversionMethod = this.#conversionMethods[conversionType.toLowerCase()]
+    if (!conversionMethod) {
+      throw new Error('Conversion not available')
+    }
+    
+    return numbersToConvert.map(number => conversionMethod(convertFrom, convertTo, number))
+  }
+
+  /**
+   * Handles conversion selection, converts the number and returns a summary of the conversion.
+   * 
+   * @param {String} conversionType - The type of conversion i.e. temperature, length, weight, volume
+   * @param {String} convertFrom - The unit to convert from
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @returns {Object} - The converted number with a summary of the conversion
+   */
+  convertWithSummary(conversionType, convertFrom, convertTo, numberToConvert) {
+    let convertedNumber = 0
+
+    const conversionMethod = this.#conversionMethods[conversionType.toLowerCase()]
+    if (!conversionMethod) {
+      throw new Error('Conversion not available')
+    }
+
+    convertedNumber = conversionMethod(convertFrom, convertTo, numberToConvert)
+
+    return {
+      conversionType: conversionType,
+      convertFrom: convertFrom,
+      convertTo: convertTo,
+      numberToConvert: numberToConvert,
+      convertedNumber: convertedNumber
     }
   }
 }

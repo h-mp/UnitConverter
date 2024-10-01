@@ -187,3 +187,16 @@ test('Check multiple volume value conversion', () => {
     expect(value).toBeCloseTo(expected[index], 2)
   })
 })
+
+// Test case to check conversion with summary
+test('Check conversion with summary', () => {
+  const result = converterSystem.convertWithSummary('temperature', 'f', 'c', 32)
+  const expected = { 
+    conversionType: 'temperature',
+    convertFrom: 'f',
+    convertTo: 'c',
+    numberToConvert: 32,
+    convertedNumber: 0
+   }
+  expect(result).toEqual(expected)
+})
