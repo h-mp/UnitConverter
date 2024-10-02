@@ -68,7 +68,7 @@ test('Check input validation in length conversion', () => {
 test('Check speed conversion', () => {
   expect(converterSystem.convertSpeed('mph', 'km/h', 60)).toBeCloseTo(96.56, 2)
 
-  expect(converterSystem.convertSpeed('kmph', 'mph', 100)).toBeCloseTo(62.14, 2)
+  expect(converterSystem.convertSpeed('km/h', 'mph', 100)).toBeCloseTo(62.14, 2)
 
   expect(converterSystem.convertSpeed('fps', 'm/s', 60)).toBeCloseTo(18.288, 2)
 
