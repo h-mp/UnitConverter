@@ -44,11 +44,27 @@ export class ConverterSystem {
    * 
    * @param {*} convertFrom - The input for the unit to convert from
    * @param {*} convertTo - The input for the unit to convert to
-   * @param {*} numberToConvert - The input for the number to convert
+   * @param {*} numberToConvert - The input for the number to convert, optional
    */
   #validateInputs(convertFrom, convertTo, numberToConvert) {
     this.#inputValidator.validateInputTypeString(convertFrom)
     this.#inputValidator.validateInputTypeString(convertTo)
+    this.#inputValidator.validateInputTypeNumber(numberToConvert)
+  }
+
+  /**
+   * Chooses the conversion method based on the sent conversion type.
+   * 
+   * @param {String} conversionType - The conversion type
+   * @throws {Error} - If the conversion is not available
+   * @returns {Function} - The conversion method
+   */
+  #chooseConversionMethod(conversionType) {
+    const conversionMethod = this.#conversionMethods[conversionType.toLowerCase()]
+    if (!conversionMethod) {
+      throw new Error('Conversion not available')
+    }
+    return conversionMethod
   }
 
   /**
@@ -137,14 +153,12 @@ export class ConverterSystem {
    * @param {String} convertFrom - The unit to convert from
    * @param {String} convertTo - The unit to convert to
    * @param {Array} numbersToConvert - The numbers to convert
-   * @throws {Error} - If the conversion is not available
    * @returns {Array} - The converted numbers
    */
   convertMultipleValues(conversionType, convertFrom, convertTo, numbersToConvert) {
-    const conversionMethod = this.#conversionMethods[conversionType.toLowerCase()]
-    if (!conversionMethod) {
-      throw new Error('Conversion not available')
-    }
+    this.#inputValidator.validateInputTypeString(conversionType)
+
+    const conversionMethod = this.#chooseConversionMethod(conversionType)
 
     return numbersToConvert.map(number => conversionMethod(convertFrom, convertTo, number))
   }
@@ -159,14 +173,11 @@ export class ConverterSystem {
    * @returns {Object} - The converted number with a summary of the conversion
    */
   convertWithSummary(conversionType, convertFrom, convertTo, numberToConvert) {
-    let convertedNumber = 0
+    this.#inputValidator.validateInputTypeString(conversionType)
 
-    const conversionMethod = this.#conversionMethods[conversionType.toLowerCase()]
-    if (!conversionMethod) {
-      throw new Error('Conversion not available')
-    }
+    const conversionMethod = this.#chooseConversionMethod(conversionType)
 
-    convertedNumber = conversionMethod(convertFrom, convertTo, numberToConvert)
+    const convertedNumber = conversionMethod(convertFrom, convertTo, numberToConvert)
 
     return {
       conversionType: conversionType,
@@ -175,5 +186,26 @@ export class ConverterSystem {
       numberToConvert: numberToConvert,
       convertedNumber: convertedNumber
     }
+  }
+
+  /**
+   * Handles conversion selection, converts the number and rounds it up to the chosen accuracy. 
+   * 
+   * @param {String} conversionType - The type of conversion i.e. temperature, length, weight, volume
+   * @param {String} convertFrom - The unit to convert from
+   * @param {String} convertTo - The unit to convert to
+   * @param {Number} numberToConvert - The number to convert
+   * @param {Number} decimalPlaces - The number of decimal places to round the converted number to
+   * @returns {Number} - The converted number rounded up
+   */
+  convertAndRoundUp(conversionType, convertFrom, convertTo, numberToConvert, decimalPlaces) {
+    this.#inputValidator.validateInputTypeString(conversionType)
+    this.#inputValidator.validateInputTypeNumber(decimalPlaces)
+
+    const conversionMethod = this.#chooseConversionMethod(conversionType)
+
+    const convertedNumber = conversionMethod(convertFrom, convertTo, numberToConvert)
+
+    return parseFloat(convertedNumber.toFixed(decimalPlaces))
   }
 }
