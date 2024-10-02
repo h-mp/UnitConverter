@@ -157,6 +157,7 @@ export class ConverterSystem {
    */
   convertMultipleValues(conversionType, convertFrom, convertTo, numbersToConvert) {
     this.#inputValidator.validateInputTypeString(conversionType)
+    this.#inputValidator.validateInputTypeArray(numbersToConvert)
 
     const conversionMethod = this.#chooseConversionMethod(conversionType)
 

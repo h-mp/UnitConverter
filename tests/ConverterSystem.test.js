@@ -188,6 +188,19 @@ test('Check multiple volume value conversion', () => {
   })
 })
 
+// Test case to check multiple value conversion input validation
+test('Check multiple value conversion input validation', () => {
+  expect(() => converterSystem.convertMultipleValues('temperature', 2, 'c', [32, 0, -40])).toThrowError('Input must be a string')
+
+  expect(() => converterSystem.convertMultipleValues('temperature', 'f', [], [32, 0, -40])).toThrowError('Input must be a string')
+
+  expect(() => converterSystem.convertMultipleValues(12, 'f', 'c', [32, 0, -40])).toThrowError('Input must be a string')
+
+  expect(() => converterSystem.convertMultipleValues('temperature', 'f', 'c', 'string')).toThrowError('Input must be an array')
+
+  expect(() => converterSystem.convertMultipleValues('something', 'f', 'c', [32, 0, -40])).toThrowError('Conversion not available')
+})
+
 // Test case to check conversion with summary
 test('Check conversion with summary', () => {
   const result = converterSystem.convertWithSummary('temperature', 'f', 'c', 32)
