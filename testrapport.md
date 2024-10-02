@@ -15,6 +15,8 @@ Det finns 48 tester totalt.
 
 ![Jest test summary](testrapport-images/TestSummary.png)
 
+Raderna som inte täcks av testfallen är default fallen i switch satserna. 
+
 ### InputValidator
 | Vad som testats | Hur det har testats | Testresultat |
 |----------------------------------|---------------------|--------------|
