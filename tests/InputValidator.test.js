@@ -28,6 +28,17 @@ test('Validate input type string', () => {
   expect(() => inputValidator.validateInputTypeString(undefined)).toThrowError('Input must be a string')
 })
 
+// Test case to check input type array validation
+test('Validate input type array', () => {
+  expect(() => inputValidator.validateInputTypeArray(1)).toThrowError('Input must be an array')
+
+  expect(() => inputValidator.validateInputTypeArray('string')).toThrowError('Input must be an array')
+
+  expect(() => inputValidator.validateInputTypeArray(undefined)).toThrowError('Input must be an array')
+
+  expect(() => inputValidator.validateInputTypeArray({})).toThrowError('Input must be an array')
+})
+
 // Test case to check positive number validation
 test('Validate positive number', () => {
   expect(() => inputValidator.validatePositiveNumber(-1)).toThrowError('Number must be positive')

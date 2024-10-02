@@ -18,7 +18,7 @@ export class InputValidator {
   }
 
   /**
-   * Validates the input type.
+   * Validates the input type string.
    *
    * @param {*} input - The input
    * @throws {Error} - If the input is not a string
@@ -26,6 +26,18 @@ export class InputValidator {
   validateInputTypeString(input) {
     if (typeof input !== 'string') {
       throw new Error('Input must be a string')
+    }
+  }
+
+  /**
+   * Validates the input type array.
+   * 
+   * @param {*} input - The input
+   * @throws {Error} - If the input is not an array
+   */
+  validateInputTypeArray(input) {
+    if (!Array.isArray(input)) {
+      throw new Error('Input must be an array')
     }
   }
 
