@@ -1,4 +1,4 @@
-# Unit Conversion Module
+# Unit Converter Module
 1dv610 Laboration 2
 
 Version 1.0.0
@@ -61,6 +61,18 @@ The module is currently only available in english.
 
 ## Installation
 
+You can download the latest release from the [GitHub Releases page](https://github.com/h-mp/L2/releases).
+
+1. Go to the [Releases page](https://github.com/h-mp/L2/releases).
+2. Download the source code (`.zip` or `.tar.gz`) of the latest release.
+3. Extract the downloaded file.
+4. Navigate to the extracted directory.
+5. Install dependencies:
+   ```sh
+   npm install
+   ```
+
+Note: Currently the release also includes the test cases.
 
 ## How to use
 
@@ -262,4 +274,15 @@ The convertTemperature only handles numbers **above the absolute freezing point*
 7. **'Temperature must be greater than or equal to -459.67°F'**
   - Thrown by the `convertTemperature` method when the Fahrenheit temperature is below the absolute freezing point.
 
+## Contribution
 
+### Contributing
+We welcome contributions to the Unit Converter Module! If you would like to contribute, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bugfix.
+3. Make your changes.
+4. Submit a pull request with a detailed description of your changes.
+
+### Bug Reports
+If you encounter any bugs or issues, please report them by creating an issue on the [Issues page](https://github.com/h-mp/L2/issues). Please provide as much detail as possible.
