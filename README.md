@@ -34,10 +34,10 @@ The module is currently only available in english.
 
 | From | To |
 |------|----|
-| Miles per hour (Mph, Mi/h) | Kilometers per hour (Kmph, Km/h) |
-| Kilometers per hour (Kmph, Km/h) | Miles per hour (Mph, Mi/h) |
-| Feet per second (Fps, F/s) | Meters per second (Mps, M/s) |
-| Meters per second (Mps, M/s) | Feet per second (Fps, F/s) |
+| Miles per hour (Mph, Mi/h) | Kilometers per hour (Km/h) |
+| Kilometers per hour (Kmph, Km/h) | Miles per hour (Mph) |
+| Feet per second (Fps, F/s) | Meters per second (M/s) |
+| Meters per second (Mps, M/s) | Feet per second (Fps) |
 
 ### Weight
 
@@ -75,6 +75,8 @@ All available methods (more specific descriptions further down):
 - **convertWeight**( convertFrom, convertTo, numberToConvert )
 - **convertVolume**( convertFrom, convertTo, numberToConvert )
 - **convertMultipleValues**( conversionType, convertFrom, convertTo, numbersToConvert )
+- **convertWithSummary**( conversionType, convertFrom, convertTo, numberToConvert )
+- **convertAndRoundUp**( conversionType, convertFrom, convertTo, numberToConvert, decimalPlaces )
 
 ```javascript
 const converter = new ConverterSystem()
@@ -92,6 +94,10 @@ const convertedWeight = converter.convertWeight('kg', 'lb', 24)
 const convertedVolume = converter.convertVolume('deciliters', 'cups', 19)
 
 const convertedValues = converter.convertMultipleValues('length', 'cm', 'in', [7, 12, 35, 42])
+
+const convertionSummary = converter.convertWithSummary('weight', 'kg', 'lb', 12)
+
+const convertedNumberRoundedUp = converter.convertAndRoundUp('volume', 'l', 'gal', 12, 3)
 ```
 
 More specific description for each method:
@@ -139,34 +145,28 @@ More specific description for each method:
       - `numbersToConvert` (Array): The array of numbers to convert.
   - **Returns:** (Array) The array of converted numbers.
 
+- **convertWithSummary**( conversionType, convertFrom, convertTo, numberToConvert )
+  - **Parameters:**
+    - `conversionType` (String): The type of conversion (e.g., 'temperature', 'length').
+    - `convertFrom` (String): The unit to convert from (e.g., 'l', 'dl').
+    - `convertTo` (String): The unit to convert to (e.g., 'gal', 'c').
+    - `numberToConvert` (Number): The number to convert.
+  - **Returns:** (Object) The converted number with a summary of the conversion.
+
+- **convertAndRoundUp**( conversionType, convertFrom, convertTo, numberToConvert, decimalPlaces )
+  - **Parameters:**
+    - `conversionType` (String): The type of conversion (e.g., 'temperature', 'length').
+    - `convertFrom` (String): The unit to convert from (e.g., 'l', 'dl').
+    - `convertTo` (String): The unit to convert to (e.g., 'gal', 'c').
+    - `numberToConvert` (Number): The number to convert.
+    - `decimalPlaces` (Number): The number of decimal places to round the converted number to
+  - **Returns:** (Number) The converted number rounded up
+
 ### Parameters
-The methods to convert a single value take three parameters
-- **String**, the unit to convert from (i.e kg, in, l, C)
-- **String**, the unit to convert to (i.e lb, cm, gal, F)
-- **Number**, the number to convert
-
-```javascript
-const convertedTemperature = converter.convertTemperature('C', 'F', 35)
-// Output: 95
-```
-
-The method to convert multiple values takes four parameters
-- **String**, the conversion type i.e temperature, length, weight, volume
-- **String**, the unit to convert from (i.e kg, in, l, C)
-- **String**, the unit to convert to (i.e lb, cm, gal, F)
-- **Array**, the array of numbers to convert
-
-```javascript
-const convertedValue = converter.convertMultipleValues('temperature', 'C', 'F', [-40, -20, 35, 50])
-// Output: [-40, -4, 95, 122]
-```
-
-<br>
-
 Both full unit names and abbreviations work as parameters.
 ```javascript
 const convertedTemperature = converter.convertTemperature('celsius', 'fahrenheit', 56)
-
+volume
 const convertedTemperature = converter.convertTemperature('C', 'F', 56)
 ```
 
@@ -183,6 +183,58 @@ const convertedWeight = converter.convertWeight('Kg', 'Lb', 24)
 
 The number parameter can also be a decimal.
 
+<br>
+
+The methods to convert a single value take three parameters
+- **String**, the unit to convert from (i.e kg, in, l, C)
+- **String**, the unit to convert to (i.e lb, cm, gal, F)
+- **Number**, the number to convert
+
+```javascript
+const convertedTemperature = converter.convertTemperature('C', 'F', 35)
+// Output: 95
+```
+
+convertMultipleValues() takes four parameters
+- **String**, the conversion type i.e temperature, length, weight, volume
+- **String**, the unit to convert from (i.e kg, in, l, C)
+- **String**, the unit to convert to (i.e lb, cm, gal, F)
+- **Array**, the array of numbers to convert
+
+```javascript
+const convertedValue = converter.convertMultipleValues('temperature', 'C', 'F', [-40, -20, 35, 50])
+// Output: [-40, -4, 95, 122]
+```
+
+convertWithSummary() takes four parameters
+- **String**, the conversion type i.e temperature, length, weight, volume
+- **String**, the unit to convert from (i.e kg, in, l, C)
+- **String**, the unit to convert to (i.e lb, cm, gal, F)
+- **Number**, the number to convert
+
+```javascript
+const conversionSummary = converter.convertWithSummary('temperature', 'C', 'F', 35)
+// Output: {
+//   conversionType: temperature,
+//   convertFrom: C,
+//   convertTo: F,
+//   numberToConvert: 34,
+//   convertedNumber: 95
+// }
+```
+
+convertAndRoundUp() takes five parameters
+- **String**, the conversion type i.e temperature, length, weight, volume
+- **String**, the unit to convert from (i.e kg, in, l, C)
+- **String**, the unit to convert to (i.e lb, cm, gal, F)
+- **Number**, the number to convert
+- **Number** the number of decimal places to round the converted number to
+
+```javascript
+const convertedNumberRoundedUp = converter.convertAndRoundUp('temperature', 'C', 'F', 42, 1)
+// Output: 107.6
+```
+
 ### Restrictions
 Only the previously listed available conversions can be used, the list is updated when new conversions are added. 
 
@@ -192,3 +244,22 @@ You can use the spellings of the available conversions listed previously as an e
 **Only the convertTemperature() method handles negative numbers.** In all other methods you must use numbers over 0. 
 
 The convertTemperature only handles numbers **above the absolute freezing point** (-273.15°C or -459.67°F).
+
+### Errors
+
+1. **Conversion not available**
+  - Thrown when an invalid unit is provided for conversion.
+2. **Input must be a number**
+  - Thrown when the input is not of the expected type (number).
+3. **Input must be a string**
+  - Thrown when the input is not of the expected type (string).
+4. **Input must be an array**
+  - Thrown when the input is not of the expected type (array).
+5. **Number must be positive**
+  - Thrown when a non-numeric value or a negative number (for methods other than `convertTemperature`) is provided.
+6. **Temperature must be greater than or equal to -273.15°C**
+  - Thrown by the `convertTemperature` method when the Celsius temperature is below the absolute freezing point.
+7. **'Temperature must be greater than or equal to -459.67°F'**
+  - Thrown by the `convertTemperature` method when the Fahrenheit temperature is below the absolute freezing point.
+
+

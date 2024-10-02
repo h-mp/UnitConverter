@@ -1,0 +1,17 @@
+# Exclude test files
+testrapport.md export-ignore
+
+# Exclude reflection files
+reflektion.md export-ignore
+
+# Exclude node_modules directory
+node_modules/ export-ignore
+
+# Exclude dist directory
+dist/ export-ignore
+
+# Exclude log files
+*.log export-ignore
+
+# Exclude environment files
+.env export-ignore
