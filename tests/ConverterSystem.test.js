@@ -200,3 +200,12 @@ test('Check conversion with summary', () => {
    }
   expect(result).toEqual(expected)
 })
+
+// Test case to check conversion with rounding up
+test('Check conversion with rounding up', () => {
+  expect(converterSystem.convertAndRoundUp('temperature', 'f', 'c', 45, 2)).toBe(7.22)
+
+  expect(converterSystem.convertAndRoundUp('length', 'm', 'ft', 2, 2)).toBe(6.56)
+
+  expect(converterSystem.convertAndRoundUp('weight', 'kg', 'pounds', 2, 3)).toBe(4.409)
+})
