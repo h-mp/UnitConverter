@@ -34,7 +34,6 @@ export class TemperatureConverter {
   convert(convertFrom, convertTo, numberToConvert) {
     this.#validateInput(numberToConvert)
     const convertToInLowerCase = convertTo.toLowerCase()
-    console.log(convertFrom, convertTo)
 
     switch (convertFrom.toLowerCase()) {
       case 'celsius':
