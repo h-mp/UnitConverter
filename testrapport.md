@@ -6,20 +6,26 @@ För att köra testerna, använd följande kommando i terminalen:
 npm test
 ```
 
-De individuella Jest-testfallen för varje klass finns i /tests mappen. Varje klass har sin egen testfil och varje metod har testats.
+De individuella Jest-testfallen för varje klass finns i /tests mappen. Varje klass har sin egen testfil och varje metod har testats. 
+En testfall kan inkludera flera tester som testar samma funktion med olika typer av indata.
 
-Det finns 46 tester totalt.
+Det finns 48 tester totalt.
 
 ## Testresultat
+
+![Jest test summary](testrapport-images/TestSummary.png)
 
 ### InputValidator
 | Vad som testats | Hur det har testats | Testresultat |
 |----------------------------------|---------------------|--------------|
 | Validate input type number | Jest | OK |
 | Validate input type string | Jest | OK |
+| Validate input type array | Jest | OK |
 | Validate positive number | Jest | OK |
 | Validate Celsius temperature range | Jest | OK |
 | Validate Fahrenheit temperature range | Jest | OK |
+
+![InputValidator tests](testrapport-images/InputValidator.png)
 
 ### ConverterSystem
 | Vad som testats | Hur det har testats | Testresultat |
@@ -38,8 +44,11 @@ Det finns 46 tester totalt.
 | Check multiple length value conversion | Jest | OK |
 | Check multiple weight value conversion | Jest | OK |
 | Check multiple volume value conversion | Jest | OK |
+| Check multiple value conversion input validation | Jest | OK |
 | Check conversion with summary | Jest | OK |
 | Check conversion with rounding up | Jest | OK |
+
+![ConverterSystem tests](testrapport-images/ConverterSystem.png)
 
 ### TemperatureConverter
 | Vad som testats | Hur det har testats | Testresultat |
@@ -47,6 +56,8 @@ Det finns 46 tester totalt.
 | Convert Fahrenheit to Celsius | Jest | OK |
 | Convert Celsius to Fahrenheit | Jest | OK |
 | Validate input | Jest | OK |
+
+![TemperatureConverter tests](testrapport-images/TemperatureConverter.png)
 
 ### LengthConverter
 | Vad som testats | Hur det har testats | Testresultat |
@@ -57,6 +68,8 @@ Det finns 46 tester totalt.
 | Convert inches to centimeters | Jest | OK |
 | Validate input | Jest | OK |
 
+![LengthConverter tests](testrapport-images/LengthConverter.png)
+
 ### SpeedConverter
 | Vad som testats | Hur det har testats | Testresultat |
 |----------------------------------|---------------------|--------------|
@@ -66,6 +79,8 @@ Det finns 46 tester totalt.
 | Convert meters per second to feet per second | Jest | OK |
 | Validate input | Jest | OK |
 
+![SpeedConverter tests](testrapport-images/SpeedConverter.png)
+
 ### WeightConverter
 | Vad som testats | Hur det har testats | Testresultat |
 |----------------------------------|---------------------|--------------|
@@ -74,6 +89,8 @@ Det finns 46 tester totalt.
 | Convert grams to ounces | Jest | OK |
 | Convert ounces to grams | Jest | OK |
 | Validate input | Jest | OK |
+
+![WeightConverter tests](testrapport-images/WeightConverter.png)
 
 ### VolumeConverter
 | Vad som testats | Hur det har testats | Testresultat |
@@ -85,3 +102,5 @@ Det finns 46 tester totalt.
 | Convert cups to deciliters | Jest | OK |
 | Convert deciliters to cups | Jest | OK |
 | Validate input | Jest | OK |
+
+![VolumeConverter](testrapport-images/VolumeConverter.png)
