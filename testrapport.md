@@ -8,7 +8,7 @@ npm test
 
 De individuella Jest-testfallen för varje klass finns i /tests mappen. Varje klass har sin egen testfil och varje metod har testats.
 
-Det finns 63 tester totalt.
+Det finns 46 tester totalt.
 
 ## Testresultat
 
@@ -38,29 +38,8 @@ Det finns 63 tester totalt.
 | Check multiple length value conversion | Jest | OK |
 | Check multiple weight value conversion | Jest | OK |
 | Check multiple volume value conversion | Jest | OK |
-
-### ConverterSelector
-| Vad som testats | Hur det har testats | Testresultat |
-|----------------------------------|---------------------|--------------|
-| Convert temperature from Celsius | Jest | OK |
-| Convert temperature from Fahrenheit | Jest | OK |
-| Convert length from meters | Jest | OK |
-| Convert length from feet | Jest | OK |
-| Convert length from centimeters | Jest | OK |
-| Convert length from inches | Jest | OK |
-| Convert speed from miles per hour | Jest | OK |
-| Convert speed from kilometers per hour | Jest | OK |
-| Convert speed from feet per second | Jest | OK |
-| Convert speed from meters per second | Jest | OK |
-| Convert weight from kilograms | Jest | OK |
-| Convert weight from pounds | Jest | OK |
-| Convert weight from grams | Jest | OK |
-| Convert weight from ounches | Jest | OK |
-| Convert volume from liters | Jest | OK |
-| Convert volume from gallons | Jest | OK |
-| Convert volume from pints | Jest | OK |
-| Convert volume from deciliters | Jest | OK |
-| Convert volume from cups | Jest | OK |
+| Check conversion with summary | Jest | OK |
+| Check conversion with rounding up | Jest | OK |
 
 ### TemperatureConverter
 | Vad som testats | Hur det har testats | Testresultat |
