@@ -1,5 +1,6 @@
 # Exclude test files
 testrapport.md export-ignore
+testrapport-images export-ignore
 
 # Exclude reflection files
 reflektion.md export-ignore
