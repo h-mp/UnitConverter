@@ -52,11 +52,17 @@ I det här fallet känns det svårt att minska antalet parameter i hela modulen,
 **Have No Side Effects** Eftersom **Do One Thing** regeln bryts, gör metoderna saker som inte berättas i metodsnamnet. Jag har ändå försökt hålla funktionaliteten relaterat till metodens uppgift och annars brytit ut funktionalitet i privata metoder.
 
 **Prefer Exceptions to Returning Error Codes** Min modul kastar undantag istället för att hålla på med error kod.
-_________________________________
 
+___________________
 Först hade jag kodat en anna lösning med super många switch satser och en ConverterSelector klass med bara switch satser. Men när jag började reflektera med hjälp av Clean Code boken vaknade jag upp och såg hur dålig och otydlig koden hade blivit. Jag kände mig att jag måste hitta en annan lösning med färre switch satser, även om jag i den här tidbegränsningen inte kan eliminera dem helt. 
 Jag lyckades radera en stor del av switch satserna, men koden kan förbättras ännu mer i fortsättningen. Jag inser att jag skulle ha behövt tänka på lösningen mer i förhand med tanke på Do One Thing regeln som boken nämner. Det skulle ha verkligen sparat mig tid och besvär. 
 
 Allmänt känner jag att jag har svårt att tydligt planera allt före jag börjar koda och det leder till många ändringar under processen. Jag har inte så mycket problem med namngivningen, men det här med funktioner känns mycket svårare. Just nu låter det lite ologiskt att varje funktion gör en sak, men kanske kommer det bli tydligare med tid. 
 
-Jag tycker det är svårt att göra enligt Do One Thing regeln och i den här modulen är det svårt att följa Function Argument principen. 
+Jag tycker det är utmanande att göra enligt Do One Thing regeln och just i den här modulen är det svårt att följa Function Argument principen. 
+
+I tidigare uppgifter känns det att jag har lyckats med att bryta ut funktionalitet i flera funktioner, speciellt när det har funnits linknande kod i flera ställen. Även om det inte har varit så "extremt" som i Do One Thing, har det säkert lagt grunden till enklare utveckling mot att uppfylla Clean Code standarderna. Just nu känns det ändå överflödigt, men vi får se vad jag tänker i fortsättningen. 
+
+Som jag nämnde tidigare, har namngivningen inte varit ett stort problem för mig: jag försöker skapa tydliga namn för min egen skull. Skolans eslint har verkligen lärt mig att indentera rätt, och dessutom är det svårt för mig själv att förstå om koden inte är i tydliga block. 
+
+Speciellt kodexemplena i de första kurserna har sättit en viss standard i mitt huvud. Jag hade inget tidigare erfarenhet om koding innan jag började utbildningen, så det var skönt att lära mig rätt på en gång. Förstås kommer den här kursen utveckla mina tanke- och arbetssätt vidare och utmana mig att uppfylla kodkvalitetskraven. 
