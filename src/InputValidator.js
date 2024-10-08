@@ -6,6 +6,21 @@
 
 export class InputValidator {
   /**
+   * Fahrenheit absolute zero.
+   */
+  #FAbsoluteZero
+
+  /**
+   * Fahrenheit absolute zero.
+   */
+  #CAbsoluteZero
+
+  constructor() {
+    this.#FAbsoluteZero = -459.67
+    this.#CAbsoluteZero = -273.15
+  }
+
+  /**
    * Validates the input type number.
    *
    * @param {*} input - The input
@@ -60,7 +75,7 @@ export class InputValidator {
    * @throws {Error} - If the temperature is below absolute zero 
    */
   validateCelsiusRange(celsius) {
-    if (celsius < -273.15) {
+    if (celsius < this.#CAbsoluteZero) {
       throw new Error('Temperature must be greater than or equal to -273.15°C')
     }
   }
@@ -72,7 +87,7 @@ export class InputValidator {
    * @throws {Error} - If the temperature is below absolute zero 
    */
   validateFahrenheitRange(fahrenheit) {
-    if (fahrenheit < -459.67) {
+    if (fahrenheit < this.#FAbsoluteZero) {
       throw new Error('Temperature must be greater than or equal to -459.67°F')
     }
   }
