@@ -5,7 +5,26 @@ Version 1.0.0
 
 License MIT
 
-## Introduktion
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Available conversions](#available-conversions)
+  - [Temperature](#temperature)
+  - [Length](#length)
+  - [Speed](#speed)
+  - [Weight](#weight)
+  - [Volume](#volume)
+- [Installation](#installation)
+- [How to use](#how-to-use)
+  - [Available methods](#available-methods)
+  - [Parameters](#parameters)
+- [Restrictions](#restrictions)
+- [Errors](#errors)
+- [Contribution](#contribution)
+  - [Contributing](#contributing)
+  - [Bug Reports](#bug-reports)
+
+## Introduction
 This module allows you to convert various units of measurement, including temperature, length, speed, weight, and volume, between metric units (commonly used in Europe) and imperial units (commonly used in the US). The module can also convert multiple values of the same conversion, provide a conversion summary and round up the value.
 
 The module can be integrated into for example recipe, fitness and health, weather, and travel applications.
