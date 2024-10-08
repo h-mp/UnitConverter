@@ -9,14 +9,27 @@ import { InputValidator } from '../InputValidator.js'
 export class TemperatureConverter {
   #inputValidator
 
+  /**
+   * Conversion factor from Fahrenheit to Celsius.
+   */
+  #FToCConversionFactor
+
+  /**
+   * Conversion offset from Fahrenheit to Celsius.
+   */
+  #FToCConversionOffset
+
   constructor() {
     this.#inputValidator = new InputValidator()
+    this.#FToCConversionFactor = 1.8
+    this.#FToCConversionOffset = 32
   }
 
   /**
    * Validates the input.
    * 
    * @param {*} input - The input
+   * @throws {Error} - If the input is not a number
    */
   #validateInput(input) {
     this.#inputValidator.validateInputTypeNumber(input)
@@ -64,11 +77,12 @@ export class TemperatureConverter {
    *
    * @param {Number} fahrenheit - The temperature in Fahrenheit
    * @returns {Number} - The temperature in Celsius
+   * @throws {Error} - If the temperature is not within the valid range
    */
   #fahrenheitToCelsius(fahrenheit) {
     this.#inputValidator.validateFahrenheitRange(fahrenheit)
 
-    return (fahrenheit - 32) / 1.8
+    return (fahrenheit - this.#FToCConversionOffset) / this.#FToCConversionFactor
   }
 
   /**
@@ -76,10 +90,11 @@ export class TemperatureConverter {
    *
    * @param {Number} celsius - The temperature in Celsius
    * @return {Number} - The temperature in Fahrenheit
+   * @throws {Error} - If the temperature is not within the valid range
    */
   #celsiusToFahrenheit(celsius) {
     this.#inputValidator.validateCelsiusRange(celsius)
 
-    return (celsius * 1.8) + 32
+    return (celsius * this.#FToCConversionFactor) + this.#FToCConversionOffset
   }
 }

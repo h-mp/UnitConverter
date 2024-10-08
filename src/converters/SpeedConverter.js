@@ -30,6 +30,8 @@ export class SpeedConverter {
    * Validates the input.
    * 
    * @param {*} input - The input
+   * @throws {Error} - If the input is not a number
+   * @throws {Error} - If the input is not a positive number
    */
   #validateInput(input) {
     this.#inputValidator.validateInputTypeNumber(input)
@@ -100,8 +102,7 @@ export class SpeedConverter {
    * @return {Number} - The speed in km/h
    */
   #milesPerHourToKilometersPerHour(milesPerHour) {
-    const kilometersPerHour = milesPerHour * this.#mphToKmphConversionRate
-    return kilometersPerHour
+    return milesPerHour * this.#mphToKmphConversionRate
   }
 
   /**

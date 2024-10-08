@@ -29,13 +29,15 @@ export class WeightConverter {
    * Validates the input.
    *
    * @param {*} input - The input
+   * @throws {Error} - If the input is not a number
+   * @throws {Error} - If the input is not a positive number
    */
   #validateInput(input) {
     this.#inputValidator.validateInputTypeNumber(input)
     this.#inputValidator.validatePositiveNumber(input)
   }
 
-    /**
+  /**
    * Handles temperature conversion selection and converts the number.
    * 
    * @param {String} convertFrom - The unit to convert from

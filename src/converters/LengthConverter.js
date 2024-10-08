@@ -30,6 +30,8 @@ export class LengthConverter {
    * Validates the input.
    * 
    * @param {*} input - The input
+   * @throws {Error} - If the input is not a number
+   * @throws {Error} - If the input is not a positive number
    */
   #validateInput(input) {
     this.#inputValidator.validateInputTypeNumber(input)
