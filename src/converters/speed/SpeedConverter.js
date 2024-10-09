@@ -4,38 +4,36 @@
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
-import { InputValidator } from '../../InputValidator.js'
+import { Converter } from '../Converter.js'
+import { MphToKmhConverter } from './MphToKmhConverter.js'
+import { KmhToMphConverter } from './KmhToMphConverter.js'
+import { FpsToMsConverter } from './FpsToMsConverter.js'
+import { MsToFpsConverter } from './MsToFpsConverter.js'
 
-export class SpeedConverter {
-  #inputValidator
-
-  /**
-   * Conversion rate from miles/hour to kilometers/hour.
-   */
-  #mphToKmphConversionRate
-
-  /**
-   * Conversion rate fron feet/second to meters/second.
-   */
-  #fpsToMpsConversionRate
+export class SpeedConverter extends Converter{
 
   constructor() {
-    this.#inputValidator = new InputValidator()
+    super()
 
-    this.#mphToKmphConversionRate = 1.609344
-    this.#fpsToMpsConversionRate = 3.280840
-  }
+    // The unit abbreviation conversions
+    this._unitAbbreviationConversions = {
+      "mph": "milesPerHour",
+      "miles per hour": "milesPerHour",
+      "km/h": "kilometersPerHour",
+      "kilometers per hour": "kilometersPerHour",
+      "fps": "feetPerSecond",
+      "feet per second": "feetPerSecond",
+      "m/s": "metersPerSecond",
+      "meters per second": "metersPerSecond"
+    }
 
-  /**
-   * Validates the input.
-   * 
-   * @param {*} input - The input
-   * @throws {Error} - If the input is not a number
-   * @throws {Error} - If the input is not a positive number
-   */
-  #validateInput(input) {
-    this.#inputValidator.validateInputTypeNumber(input)
-    this.#inputValidator.validatePositiveNumber(input)
+    // The available conversions
+    this._availableConversions = {
+      "milesPerHour-kilometersPerHour": new MphToKmhConverter(),
+      "kilometersPerHour-milesPerHour": new KmhToMphConverter(),
+      "feetPerSecond-metersPerSecond": new FpsToMsConverter(),
+      "metersPerSecond-feetPerSecond": new MsToFpsConverter()
+    }
   }
 
   /**
@@ -48,90 +46,13 @@ export class SpeedConverter {
    * @returns {Number} - The converted number
    */
   convert(convertFrom, convertTo, numberToConvert) {
-    this.#validateInput(numberToConvert)
-    const convertToInLowerCase = convertTo.toLowerCase()
+    this._validateNumberInput(numberToConvert)
+    this._validateStringInputs(convertFrom, convertTo)
 
-    switch (convertFrom.toLowerCase()) {
-      case 'miles per hour':
-      case 'mph':
-        switch (convertToInLowerCase) {
-          case 'kilometers per hour':
-          case 'km/h':
-            return this.#milesPerHourToKilometersPerHour(numberToConvert)
-          default:
-            throw new Error('Conversion not available')
-        }
-      case 'kilometers per hour':
-      case 'km/h':
-        switch (convertToInLowerCase) {
-          case 'miles per hour':
-          case 'mph':
-            return this.#kilometersPerHourToMilesPerHour(numberToConvert)
-          default:
-            throw new Error('Conversion not available')
-        }
-      case 'feet per second':
-      case 'fps':
-        this.#validateInput(numberToConvert)
+    const normalizedFrom = this._normalizeAbbreviation(convertFrom)
+    const normalizedTo = this._normalizeAbbreviation(convertTo)
+    
 
-        switch (convertToInLowerCase) {
-          case 'meters per second':
-          case 'm/s':
-            return this.#feetPerSecondToMetersPerSecond(numberToConvert)
-          default:
-            throw new Error('Conversion not available')
-        }
-      case 'meters per second':
-      case 'm/s':
-        switch (convertToInLowerCase) {
-          case 'feet per second':
-          case 'fps':
-            return this.#metersPerSecondToFeetPerSecond(numberToConvert)
-          default:
-            throw new Error('Conversion not available')
-        }
-      default:
-        throw new Error('Conversion not available')
-    }
-  }
-
-  /**
-   * Converts the speed from miles/hour to kilometers/hour.
-   *
-   * @param {Number} milesPerHour - The speed to be converted
-   * @return {Number} - The speed in km/h
-   */
-  #milesPerHourToKilometersPerHour(milesPerHour) {
-    return milesPerHour * this.#mphToKmphConversionRate
-  }
-
-  /**
-   * Converts the speed from kilometers/hour to miles/hour.
-   *
-   * @param {Number} kilometersPerHour - The speed to be converted
-   * @return {Number} - The speed in mph
-   */
-  #kilometersPerHourToMilesPerHour(kilometersPerHour) {
-    return kilometersPerHour / this.#mphToKmphConversionRate
-  }
-
-  /**
-   * Converts the speed from feet/second to meters/second.
-   *
-   * @param {Number} feetPerSecond - The speed to be converted
-   * @return {Number} - The speed in m/s
-   */
-  #feetPerSecondToMetersPerSecond(feetPerSecond) {
-    return feetPerSecond / this.#fpsToMpsConversionRate
-  }
-
-  /**
-   * Converts the speed from meters/second to feet/second
-   *
-   * @param {Number} metersPerSecond - The speed to be converted
-   * @return {Number} - The speed in fps
-   */
-  #metersPerSecondToFeetPerSecond(metersPerSecond) {
-    return metersPerSecond * this.#fpsToMpsConversionRate
+    return this._convertValue(normalizedFrom, normalizedTo, numberToConvert)
   }
 }
