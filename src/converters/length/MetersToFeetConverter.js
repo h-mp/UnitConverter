@@ -7,14 +7,10 @@
 import { ConversionStrategy } from '../../strategies/ConvesionStrategy.js'
 
 export class MetersToFeetConverter extends ConversionStrategy {
-  /**
-   * Conversion rate from meters to feet.
-   */
-  #mToFtConversionRate
 
   constructor() {
     super()
-    this.#mToFtConversionRate = 3.2808
+    this._conversionRate = 3.2808
   }
 
   /**
@@ -24,6 +20,6 @@ export class MetersToFeetConverter extends ConversionStrategy {
    * @returns {Number} - The converted number
    */
   convert(meters) {
-    return meters * this.#mToFtConversionRate
+    return meters * this._conversionRate
   }
 }

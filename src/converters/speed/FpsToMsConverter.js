@@ -7,14 +7,10 @@
 import { ConversionStrategy } from '../../strategies/ConvesionStrategy.js'
 
 export class FpsToMsConverter extends ConversionStrategy {
-  /**
-   * Conversion rate from feet/second to meters/second.
-   */
-  #fpsToMsConversionRate
 
   constructor() {
     super()
-    this.#fpsToMsConversionRate = 3.280840
+    this._conversionRate = 3.280840
   }
 
   /**
@@ -24,6 +20,6 @@ export class FpsToMsConverter extends ConversionStrategy {
    * @returns {Number} - The converted number
    */
   convert(feetPerSecond) {
-    return feetPerSecond / this.#fpsToMsConversionRate
+    return feetPerSecond / this._conversionRate
   }
 }

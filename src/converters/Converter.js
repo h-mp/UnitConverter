@@ -7,17 +7,17 @@
 import { InputValidator } from "../InputValidator"
 import { ConversionStrategy } from "../strategies/ConvesionStrategy"
 
-// Some of the methods and fields in this class are intended to be protected.
+// NOTE: Some of the methods and fields in this class are intended to be protected.
 
 export class Converter {
-  #inputValidator
+  _inputValidator
 
   _availableConversions
 
   _unitAbbreviationConversions
 
   constructor() {
-    this.#inputValidator = new InputValidator()
+    this._inputValidator = new InputValidator()
   }
 
   /**
@@ -28,8 +28,8 @@ export class Converter {
    * @throws {Error} - If the input is not a positive number
    */
   _validateNumberInput(numberInput) {
-    this.#inputValidator.validateInputTypeNumber(numberInput)
-    this.#inputValidator.validatePositiveNumber(numberInput)
+    this._inputValidator.validateInputTypeNumber(numberInput)
+    this._inputValidator.validatePositiveNumber(numberInput)
   }
 
   /**
@@ -40,8 +40,8 @@ export class Converter {
    * @throws {Error} - If the inputs are not strings
    */
   _validateStringInputs(convertFromInput, convertToInput) {
-    this.#inputValidator.validateInputTypeString(convertFromInput)
-    this.#inputValidator.validateInputTypeString(convertToInput)
+    this._inputValidator.validateInputTypeString(convertFromInput)
+    this._inputValidator.validateInputTypeString(convertToInput)
   }
 
   /**
@@ -51,11 +51,12 @@ export class Converter {
    * @returns {string} - The normalized unit name
    */
   _normalizeAbbreviation(unitAbbreviation) {
-    const normalizedUnit = this._unitAbbreviationConversions[unitAbbreviation.toLowerCase()]
+    const lowerCaseUnitAbbreviation = unitAbbreviation.toLowerCase()
+    const normalizedUnit = this._unitAbbreviationConversions[lowerCaseUnitAbbreviation]
 
     // For names that are already normalized
     if (!normalizedUnit) {
-      return unitAbbreviation
+      return lowerCaseUnitAbbreviation
     }
 
     return normalizedUnit

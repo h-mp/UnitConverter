@@ -7,14 +7,10 @@
 import { ConversionStrategy } from '../../strategies/ConvesionStrategy.js'
 
 export class InchesToCentimetersConverter extends ConversionStrategy {
-  /**
-   * Conversion rate from inches to centimeters.
-   */
-  #inToCmConversionRate
 
   constructor() {
     super()
-    this.#inToCmConversionRate = 0.39370
+    this._conversionRate = 0.39370
   }
 
   /**
@@ -24,6 +20,6 @@ export class InchesToCentimetersConverter extends ConversionStrategy {
    * @returns {Number} - The converted number
    */
   convert(inches) {
-    return inches / this.#inToCmConversionRate
+    return inches / this._conversionRate
   }
 }

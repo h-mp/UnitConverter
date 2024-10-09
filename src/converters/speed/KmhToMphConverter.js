@@ -7,14 +7,10 @@
 import { ConversionStrategy } from '../../strategies/ConvesionStrategy.js'
 
 export class KmhToMphConverter extends ConversionStrategy {
-  /**
-   * Conversion rate from kilometers/hour to miles/hour.
-   */
-  #kmhToMphConversionRate
 
   constructor() {
     super()
-    this.#kmhToMphConversionRate = 1.609344
+    this._conversionRate = 1.609344
   }
 
   /**
@@ -24,6 +20,6 @@ export class KmhToMphConverter extends ConversionStrategy {
    * @return {Number} - The speed in mph
    */
   convert(kilometersPerHour) {
-    return kilometersPerHour / this.#kmhToMphConversionRate
+    return kilometersPerHour / this._conversionRate
   }
 }
