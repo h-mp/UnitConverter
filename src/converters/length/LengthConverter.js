@@ -5,37 +5,74 @@
  */
 
 import { InputValidator } from '../../InputValidator.js'
+import { CentimetersToInchesConverter } from './CentimetersToInchesConverter.js'
+import { FeetToMetersConverter } from './FeetToMetersConverter.js'
+import { InchesToCentimetersConverter } from './InchesToCentimetersConverter.js'
+import { MetersToFeetConverter } from './MetersToFeetConverter.js'
 
 export class LengthConverter {
   #inputValidator
 
   /**
-   * Conversion rate from meters to feet.
+   * Unit abbreviation conversions.
    */
-  #mToFtConversionRate
+  #unitAbbreviationConversions
 
   /**
-   * Conversion rate from centimeters to inches.
+   * Available converters for length.
    */
-  #cmToInConversionRate
+  #availableConversions
 
   constructor() {
     this.#inputValidator = new InputValidator()
 
-    this.#mToFtConversionRate = 3.2808
-    this.#cmToInConversionRate = 0.39370
+    this.#unitAbbreviationConversions = {
+      'm': 'meters',
+      'ft': 'feet',
+      'cm': 'centimeters',
+      'in': 'inches'
+    }
+
+    this.#availableConversions = {
+      "meters-feet": new MetersToFeetConverter(),
+      "feet-meters": new FeetToMetersConverter(),
+      "centimeters-inches": new CentimetersToInchesConverter(),
+      "inches-centimeters": new InchesToCentimetersConverter()
+    }
   }
 
   /**
-   * Validates the input.
+   * Validates the number input.
    * 
-   * @param {*} input - The input
+   * @param {*} numberInput - The input number
    * @throws {Error} - If the input is not a number
    * @throws {Error} - If the input is not a positive number
    */
-  #validateInput(input) {
-    this.#inputValidator.validateInputTypeNumber(input)
-    this.#inputValidator.validatePositiveNumber(input)
+  #validateNumberInput(numberInput) {
+    this.#inputValidator.validateInputTypeNumber(numberInput)
+    this.#inputValidator.validatePositiveNumber(numberInput)
+  }
+
+  /**
+   * Validates the string inputs.
+   * 
+   * @param {*} convertFromInput - The input string to convert from
+   * @param {*} convertToInput - The input string to convert to
+   * @throws {Error} - If the inputs are not strings
+   */
+  #validateStringInputs(convertFromInput, convertToInput) {
+    this.#inputValidator.validateInputTypeString(convertFromInput)
+    this.#inputValidator.validateInputTypeString(convertToInput)
+  }
+
+  /**
+   * Normalizes the unit abbreviation.
+   * 
+   * @param {string} unitAbbreviation - The unit abbreviation
+   * @returns {string} - The normalized unit name
+   */
+  #normalizeAbbreviation(unitAbbreviation) {
+    return this.#unitAbbreviationConversions[unitAbbreviation.toLowerCase()]
   }
 
   /**
@@ -48,88 +85,19 @@ export class LengthConverter {
    * @returns {Number} - The converted number
    */
   convert(convertFrom, convertTo, numberToConvert) {
-    this.#validateInput(numberToConvert)
-    const convertToInLowerCase = convertTo.toLowerCase()
+    this.#validateNumberInput(numberToConvert)
+    this.#validateStringInputs(convertFrom, convertTo)
 
-    switch (convertFrom.toLowerCase()) {
-      case 'meters':
-      case 'm':
-        switch (convertToInLowerCase) {
-          case 'feet':
-          case 'ft':
-            return this.#metersToFeet(numberToConvert)
-          default:
-            throw new Error('Conversion not available')
-        }
-      case 'feet':
-      case 'ft':
-        switch (convertToInLowerCase) {
-          case 'meters':
-          case 'm':
-            return this.#feetToMeters(numberToConvert)
-          default:
-            throw new Error('Conversion not available')
-        }
-      case 'centimeters':
-      case 'cm':
-        switch (convertToInLowerCase) {
-          case 'inches':
-          case 'in':
-            return this.#centimetersToInches(numberToConvert)
-          default:
-            throw new Error('Conversion not available')
-        }
-      case 'inches':
-      case 'in':
-        switch (convertToInLowerCase) {
-          case 'centimeters':
-          case 'cm':
-            return this.#inchesToCentimeters(numberToConvert)
-          default:
-            throw new Error('Conversion not available')
-        }
-      default:
-        throw new Error('Conversion not available')
+    const normalizedFrom = this.#normalizeAbbreviation(convertFrom.toLowerCase())
+    const normalizedTo = this.#normalizeAbbreviation(convertTo.toLowerCase())
+    
+    const key = `${normalizedFrom}-${normalizedTo}`
+    const converter = this.#availableConversions[key]
+
+    if (!converter) {
+      throw new Error('Conversion not available')
     }
-  }
 
-  /**
-   * Converts the length from meters to feet.
-   *
-   * @param {Number} meters - The length to be converted
-   * @return {Number} - The length in feet
-   */
-  #metersToFeet(meters) {
-    return meters * this.#mToFtConversionRate
-  }
-
-  /**
-   * Converts the length from feet to meters.
-   *
-   * @param {Number} feet - The length to be converted
-   * @return {Number} - The length in meters
-   */
-  #feetToMeters(feet) {
-    return feet / this.#mToFtConversionRate
-  }
-
-  /**
-   * Converts the length from centimeters to inches.
-   *
-   * @param {Number} feet - The length to be converted
-   * @return {Number} - The length in inches
-   */
-  #centimetersToInches(centimeters) {
-    return centimeters * this.#cmToInConversionRate
-  }
-
-  /**
-   * Converts the length from inches to centimeters.
-   *
-   * @param {Number} feet - The length to be converted
-   * @return {Number} - The length in centimeters
-   */
-  #inchesToCentimeters(inches) {
-    return inches / this.#cmToInConversionRate
+    return converter.convert(numberToConvert)
   }
 }
