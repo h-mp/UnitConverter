@@ -4,7 +4,7 @@
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
-import { InputValidator } from '../InputValidator.js'
+import { InputValidator } from '../../InputValidator.js'
 
 export class LengthConverter {
   #inputValidator

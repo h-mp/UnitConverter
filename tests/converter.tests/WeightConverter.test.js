@@ -4,7 +4,7 @@
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
-import { WeightConverter } from '../../src/converters/WeightConverter'
+import { WeightConverter } from '../../src/converters/weight/WeightConverter'
 
 const weightConverter = new WeightConverter()
 

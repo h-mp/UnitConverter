@@ -5,11 +5,11 @@
  */
 
 import { InputValidator } from './InputValidator.js'
-import { LengthConverter } from './converters/LengthConverter.js'
-import { TemperatureConverter } from './converters/TemperatureConverter.js'
-import { SpeedConverter } from './converters/SpeedConverter.js'
-import { WeightConverter } from './converters/WeightConverter.js'
-import { VolumeConverter } from './converters/VolumeConverter.js'
+import { LengthConverter } from './converters/length/LengthConverter.js'
+import { TemperatureConverter } from './converters/temperature/TemperatureConverter.js'
+import { SpeedConverter } from './converters/speed/SpeedConverter.js'
+import { WeightConverter } from './converters/weight/WeightConverter.js'
+import { VolumeConverter } from './converters/volume/VolumeConverter.js'
 
 export class ConverterSystem {
   #inputValidator

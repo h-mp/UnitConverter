@@ -4,7 +4,7 @@
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
-import { TemperatureConverter } from '../../src/converters/TemperatureConverter'
+import { TemperatureConverter } from '../../src/converters/temperature/TemperatureConverter'
 
 const temperatureConverter = new TemperatureConverter()
 
