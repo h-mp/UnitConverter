@@ -4,25 +4,24 @@
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
-import { InputValidator } from '../../InputValidator.js'
+import { Converter } from '../Converter.js'
+import { CelsiusToFahrenheitConverter } from './CelsiusToFahrenheitConverter.js'
+import { FahrenheitToCelsiusConverter } from './FahrenheitToCelsiusConverter.js'
 
-export class TemperatureConverter {
-  #inputValidator
-
-  /**
-   * Conversion factor from Fahrenheit to Celsius.
-   */
-  #FToCConversionFactor
-
-  /**
-   * Conversion offset from Fahrenheit to Celsius.
-   */
-  #FToCConversionOffset
+export class TemperatureConverter extends Converter {
 
   constructor() {
-    this.#inputValidator = new InputValidator()
-    this.#FToCConversionFactor = 1.8
-    this.#FToCConversionOffset = 32
+    super() 
+
+    this._unitAbbreviationConversions = {
+      "c": "celsius",
+      "f": "fahrenheit"
+    }
+
+    this._availableConversions = {
+      "celsius-fahrenheit": new CelsiusToFahrenheitConverter(),
+      "fahrenheit-celsius": new FahrenheitToCelsiusConverter()
+    }
   }
 
   /**
@@ -31,8 +30,8 @@ export class TemperatureConverter {
    * @param {*} input - The input
    * @throws {Error} - If the input is not a number
    */
-  #validateInput(input) {
-    this.#inputValidator.validateInputTypeNumber(input)
+  #validateTemperatureNumberInput(input) {
+    this._inputValidator.validateInputTypeNumber(input)
   }
 
   /**
@@ -45,56 +44,12 @@ export class TemperatureConverter {
    * @returns {Number} - The converted number
    */
   convert(convertFrom, convertTo, numberToConvert) {
-    this.#validateInput(numberToConvert)
-    const convertToInLowerCase = convertTo.toLowerCase()
+    this.#validateTemperatureNumberInput(numberToConvert)
+    this._validateStringInputs(convertFrom, convertTo)
 
-    switch (convertFrom.toLowerCase()) {
-      case 'celsius':
-      case 'c':
-        switch (convertToInLowerCase) {
-          case 'fahrenheit':
-          case 'f':
-            return this.#celsiusToFahrenheit(numberToConvert)
-          default:
-            throw new Error('Conversion not available')
-        }
-      case 'fahrenheit':
-      case 'f':
-        switch (convertToInLowerCase) {
-          case 'celsius':
-          case 'c':
-            return this.#fahrenheitToCelsius(numberToConvert)
-          default:
-            throw new Error('Conversion not available')
-        }
-      default:
-        throw new Error('Conversion not available')
-    }
-  }
+    const normalizedFrom = this._normalizeAbbreviation(convertFrom)
+    const normalizedTo = this._normalizeAbbreviation(convertTo)
 
-  /**
-   * Converts the temperature from Fahrenheit to Celsius.
-   *
-   * @param {Number} fahrenheit - The temperature in Fahrenheit
-   * @returns {Number} - The temperature in Celsius
-   * @throws {Error} - If the temperature is not within the valid range
-   */
-  #fahrenheitToCelsius(fahrenheit) {
-    this.#inputValidator.validateFahrenheitRange(fahrenheit)
-
-    return (fahrenheit - this.#FToCConversionOffset) / this.#FToCConversionFactor
-  }
-
-  /**
-   * Converts the temperature from Celsius to Fahrenheit.
-   *
-   * @param {Number} celsius - The temperature in Celsius
-   * @return {Number} - The temperature in Fahrenheit
-   * @throws {Error} - If the temperature is not within the valid range
-   */
-  #celsiusToFahrenheit(celsius) {
-    this.#inputValidator.validateCelsiusRange(celsius)
-
-    return (celsius * this.#FToCConversionFactor) + this.#FToCConversionOffset
+    return this._convertValue(normalizedFrom, normalizedTo, numberToConvert)
   }
 }
