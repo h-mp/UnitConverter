@@ -10,8 +10,12 @@ import { FahrenheitToCelsiusConverter } from './FahrenheitToCelsiusConverter.js'
 
 export class TemperatureConverter extends Converter {
 
+  _celsiusToFahrenheitConverter
+  _fahrenheitToCelsiusConverter
+
   constructor() {
     super() 
+    this.#initializeConverters()
 
     this._unitAbbreviationConversions = {
       "c": "celsius",
@@ -19,9 +23,17 @@ export class TemperatureConverter extends Converter {
     }
 
     this._availableConversions = {
-      "celsius-fahrenheit": new CelsiusToFahrenheitConverter(),
-      "fahrenheit-celsius": new FahrenheitToCelsiusConverter()
+      "celsius-fahrenheit": this._celsiusToFahrenheitConverter,
+      "fahrenheit-celsius": this._fahrenheitToCelsiusConverter
     }
+  }
+
+  /**
+   * Initializes the converters.
+   */
+  #initializeConverters() {
+    this._celsiusToFahrenheitConverter = new CelsiusToFahrenheitConverter()
+    this._fahrenheitToCelsiusConverter = new FahrenheitToCelsiusConverter()
   }
 
   /**

@@ -12,8 +12,14 @@ import { OuncesToGramsConverter } from './OuncesToGramsConverter.js'
 
 export class WeightConverter extends Converter {
 
+  _kilogramsToPoundsConverter
+  _poundsToKilogramsConverter
+  _gramsToOuncesConverter
+  _ouncesToGramsConverter
+
   constructor() {
     super()
+    this.#initializeConverters()
 
     this._unitAbbreviationConversions = {
       "kg": "kilograms",
@@ -23,11 +29,21 @@ export class WeightConverter extends Converter {
     }
 
     this._availableConversions = {
-      "kilograms-pounds": new KilogramsToPoundsConverter(),
-      "pounds-kilograms": new PoundsToKilogramsConverter(),
-      "grams-ounces": new GramsToOuncesConverter(),
-      "ounces-grams": new OuncesToGramsConverter()
+      "kilograms-pounds": this._kilogramsToPoundsConverter,
+      "pounds-kilograms": this._poundsToKilogramsConverter,
+      "grams-ounces": this._gramsToOuncesConverter,
+      "ounces-grams": this._ouncesToGramsConverter
     }
+  }
+
+  /**
+   * Initializes the converters.
+   */
+  #initializeConverters() {
+    this._kilogramsToPoundsConverter = new KilogramsToPoundsConverter()
+    this._poundsToKilogramsConverter = new PoundsToKilogramsConverter()
+    this._gramsToOuncesConverter = new GramsToOuncesConverter()
+    this._ouncesToGramsConverter = new OuncesToGramsConverter()
   }
 
   /**

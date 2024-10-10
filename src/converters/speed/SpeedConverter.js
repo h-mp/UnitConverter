@@ -12,8 +12,14 @@ import { MsToFpsConverter } from './MsToFpsConverter.js'
 
 export class SpeedConverter extends Converter{
 
+  _mphToKmhConverter
+  _kmhToMphConverter
+  _fpsToMsConverter
+  _msToFpsConverter
+
   constructor() {
     super()
+    this.#initializeConverters()
 
     // The unit abbreviation conversions
     this._unitAbbreviationConversions = {
@@ -29,11 +35,21 @@ export class SpeedConverter extends Converter{
 
     // The available conversions
     this._availableConversions = {
-      "milesPerHour-kilometersPerHour": new MphToKmhConverter(),
-      "kilometersPerHour-milesPerHour": new KmhToMphConverter(),
-      "feetPerSecond-metersPerSecond": new FpsToMsConverter(),
-      "metersPerSecond-feetPerSecond": new MsToFpsConverter()
+      "milesPerHour-kilometersPerHour": this._mphToKmhConverter,
+      "kilometersPerHour-milesPerHour": this._kmhToMphConverter,
+      "feetPerSecond-metersPerSecond": this._fpsToMsConverter,
+      "metersPerSecond-feetPerSecond": this._msToFpsConverter
     }
+  }
+
+  /**
+   * Initializes the converters.
+   */
+  #initializeConverters() {
+    this._mphToKmhConverter = new MphToKmhConverter()
+    this._kmhToMphConverter = new KmhToMphConverter()
+    this._fpsToMsConverter = new FpsToMsConverter()
+    this._msToFpsConverter = new MsToFpsConverter()
   }
 
   /**

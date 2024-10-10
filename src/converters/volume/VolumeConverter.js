@@ -13,9 +13,16 @@ import { PintsToLitersConverter } from './PintsToLitersConverter.js'
 import { LitersToPintsConverter } from './LitersToPintsConverter.js'
 
 export class VolumeConverter extends Converter {
+  _cupsToDecilitersConverter
+  _decilitersToCupsConverter
+  _gallonsToLitersConverter
+  _litersToGallonsConverter
+  _pintsToLitersConverter
+  _litersToPintsConverter
 
   constructor() {
     super()
+    this.#initializeConverters()
 
     this._unitAbbreviationConversions = {
       "c": "cups",
@@ -26,13 +33,25 @@ export class VolumeConverter extends Converter {
     }
 
     this._availableConversions = {
-      "cups-deciliters": new CupsToDecilitersConverter(),
-      "deciliters-cups": new DecilitersToCupsConverter(),
-      "gallons-liters": new GallonsToLitersConverter(),
-      "liters-gallons": new LitersToGallonsConverter(),
-      "pints-liters": new PintsToLitersConverter(),
-      "liters-pints": new LitersToPintsConverter()
+      "cups-deciliters": this._cupsToDecilitersConverter,
+      "deciliters-cups": this._decilitersToCupsConverter,
+      "gallons-liters": this._gallonsToLitersConverter,
+      "liters-gallons": this._litersToGallonsConverter,
+      "pints-liters": this._pintsToLitersConverter,
+      "liters-pints": this._litersToPintsConverter
     }
+  }
+
+  /**
+   * Initializes the converters.
+   */
+  #initializeConverters() {
+    this._cupsToDecilitersConverter = new CupsToDecilitersConverter()
+    this._decilitersToCupsConverter = new DecilitersToCupsConverter()
+    this._gallonsToLitersConverter = new GallonsToLitersConverter()
+    this._litersToGallonsConverter = new LitersToGallonsConverter()
+    this._pintsToLitersConverter = new PintsToLitersConverter()
+    this._litersToPintsConverter = new LitersToPintsConverter()
   }
 
   /**

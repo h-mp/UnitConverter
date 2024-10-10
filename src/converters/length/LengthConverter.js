@@ -11,8 +11,15 @@ import { InchesToCentimetersConverter } from './InchesToCentimetersConverter.js'
 import { MetersToFeetConverter } from './MetersToFeetConverter.js'
 
 export class LengthConverter extends Converter {
+
+  _centimetersToInchesConverter
+  _inchesToCentimetersConverter
+  _metersToFeetConverter
+  _feetToMetersConverter
+
   constructor() {
     super()
+    this.#initializeConverters()
 
     // The unit abbreviation conversions
     this._unitAbbreviationConversions = {
@@ -24,11 +31,21 @@ export class LengthConverter extends Converter {
 
     // The available conversions
     this._availableConversions = {
-      "meters-feet": new MetersToFeetConverter(),
-      "feet-meters": new FeetToMetersConverter(),
-      "centimeters-inches": new CentimetersToInchesConverter(),
-      "inches-centimeters": new InchesToCentimetersConverter()
+      "meters-feet": this._metersToFeetConverter,
+      "feet-meters": this._feetToMetersConverter,
+      "centimeters-inches": this._centimetersToInchesConverter,
+      "inches-centimeters": this._inchesToCentimetersConverter
     }
+  }
+
+  /**
+   * Initializes the converters.
+   */
+  #initializeConverters() {
+    this._centimetersToInchesConverter = new CentimetersToInchesConverter()
+    this._inchesToCentimetersConverter = new InchesToCentimetersConverter()
+    this._metersToFeetConverter = new MetersToFeetConverter()
+    this._feetToMetersConverter = new FeetToMetersConverter()
   }
 
   /**
