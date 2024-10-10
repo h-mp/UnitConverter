@@ -4,7 +4,7 @@
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
-import { Converter } from '../Converter.js'
+import { ConverterBaseClass } from '../ConverterBaseClass.js'
 import { CupsToDecilitersConverter } from './CupsToDecilitersConverter.js'
 import { DecilitersToCupsConverter } from './DecilitersToCupsConverter.js'
 import { GallonsToLitersConverter } from './GallonsToLitersConverter.js'
@@ -12,7 +12,7 @@ import { LitersToGallonsConverter } from './LitersToGallonsConverter.js'
 import { PintsToLitersConverter } from './PintsToLitersConverter.js'
 import { LitersToPintsConverter } from './LitersToPintsConverter.js'
 
-export class VolumeConverter extends Converter {
+export class VolumeConverter extends ConverterBaseClass {
   _cupsToDecilitersConverter
   _decilitersToCupsConverter
   _gallonsToLitersConverter

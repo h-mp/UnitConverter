@@ -4,11 +4,11 @@
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
-import { Converter } from '../Converter.js'
+import { ConverterBaseClass } from '../ConverterBaseClass.js'
 import { CelsiusToFahrenheitConverter } from './CelsiusToFahrenheitConverter.js'
 import { FahrenheitToCelsiusConverter } from './FahrenheitToCelsiusConverter.js'
 
-export class TemperatureConverter extends Converter {
+export class TemperatureConverter extends ConverterBaseClass {
 
   _celsiusToFahrenheitConverter
   _fahrenheitToCelsiusConverter

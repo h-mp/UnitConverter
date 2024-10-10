@@ -4,13 +4,13 @@
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
-import { Converter } from '../Converter.js'
+import { ConverterBaseClass } from '../ConverterBaseClass.js'
 import { CentimetersToInchesConverter } from './CentimetersToInchesConverter.js'
 import { FeetToMetersConverter } from './FeetToMetersConverter.js'
 import { InchesToCentimetersConverter } from './InchesToCentimetersConverter.js'
 import { MetersToFeetConverter } from './MetersToFeetConverter.js'
 
-export class LengthConverter extends Converter {
+export class LengthConverter extends ConverterBaseClass {
 
   _centimetersToInchesConverter
   _inchesToCentimetersConverter

@@ -4,13 +4,13 @@
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
-import { Converter } from '../Converter.js'
+import { ConverterBaseClass } from '../ConverterBaseClass.js'
 import { MphToKmhConverter } from './MphToKmhConverter.js'
 import { KmhToMphConverter } from './KmhToMphConverter.js'
 import { FpsToMsConverter } from './FpsToMsConverter.js'
 import { MsToFpsConverter } from './MsToFpsConverter.js'
 
-export class SpeedConverter extends Converter{
+export class SpeedConverter extends ConverterBaseClass {
 
   _mphToKmhConverter
   _kmhToMphConverter

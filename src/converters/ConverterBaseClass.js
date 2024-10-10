@@ -9,7 +9,7 @@ import { ConversionStrategy } from "../strategies/ConvesionStrategy"
 
 // NOTE: Some of the methods and fields in this class are intended to be protected.
 
-export class Converter {
+export class ConverterBaseClass {
   _inputValidator
 
   _availableConversions

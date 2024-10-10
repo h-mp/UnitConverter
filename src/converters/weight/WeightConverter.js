@@ -4,13 +4,13 @@
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
-import { Converter } from '../Converter.js'
+import { ConverterBaseClass } from '../ConverterBaseClass.js'
 import { KilogramsToPoundsConverter } from './KilogramsToPoundsConverter.js'
 import { PoundsToKilogramsConverter } from './PoundsToKilogramsConverter.js'
 import { GramsToOuncesConverter } from './GramsToOuncesConverter.js'
 import { OuncesToGramsConverter } from './OuncesToGramsConverter.js'
 
-export class WeightConverter extends Converter {
+export class WeightConverter extends ConverterBaseClass {
 
   _kilogramsToPoundsConverter
   _poundsToKilogramsConverter
