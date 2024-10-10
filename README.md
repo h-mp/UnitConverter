@@ -53,10 +53,10 @@ The module is currently only available in english.
 
 | From | To |
 |------|----|
-| Miles per hour (Mph, Mi/h) | Kilometers per hour (Km/h) |
-| Kilometers per hour (Kmph, Km/h) | Miles per hour (Mph) |
-| Feet per second (Fps, F/s) | Meters per second (M/s) |
-| Meters per second (Mps, M/s) | Feet per second (Fps) |
+| Miles per hour (Mph) | Kilometers per hour (Km/h) |
+| Kilometers per hour ( Km/h) | Miles per hour (Mph) |
+| Feet per second (Fps) | Meters per second (M/s) |
+| Meters per second (M/s) | Feet per second (Fps) |
 
 ### Weight
 
@@ -95,7 +95,7 @@ Note: Currently the release also includes the test cases.
 
 ## How to use
 
-The `ConverterSystem` class provides methods to convert various units of measurement between metric and imperial systems.
+The `UnitConverter` class provides methods to convert various units of measurement between metric and imperial systems.
 
 ### Available methods
 
@@ -110,7 +110,7 @@ All available methods (more specific descriptions further down):
 - **convertAndRoundUp**( conversionType, convertFrom, convertTo, numberToConvert, decimalPlaces )
 
 ```javascript
-const converter = new ConverterSystem()
+const converter = new UnitConverter()
 
 // Examples of use for all available methods:
 
