@@ -1,70 +1,59 @@
 /**
- * Module for the converter system class.
+ * Module for the unit converter class.
  * 
  * @author Hilja-Maria Paananen <hp222qn@student.lnu.se>
  */
 
 import { InputValidator } from './InputValidator.js'
-import { LengthConverter } from './converters/length/LengthConverter.js'
-import { TemperatureConverter } from './converters/temperature/TemperatureConverter.js'
-import { SpeedConverter } from './converters/speed/SpeedConverter.js'
-import { WeightConverter } from './converters/weight/WeightConverter.js'
-import { VolumeConverter } from './converters/volume/VolumeConverter.js'
+import { ConversionCoordinator } from './ConversionCoordinator.js'
 
-export class ConverterSystem {
+export class UnitConverter {
   #inputValidator
-
-  #lengthConverter
-  #temperatureConverter
-  #speedConverter
-  #weightConverter
-  #volumeConverter
-
-  #conversionMethods
+  #conversionCoordinator
 
   constructor() {
     this.#inputValidator = new InputValidator()
-    this.#lengthConverter = new LengthConverter()
-    this.#temperatureConverter = new TemperatureConverter()
-    this.#speedConverter = new SpeedConverter()
-    this.#weightConverter = new WeightConverter()
-    this.#volumeConverter = new VolumeConverter()
-
-    this.#conversionMethods = {
-      temperature: this.convertTemperature.bind(this),
-      length: this.convertLength.bind(this),
-      speed: this.convertSpeed.bind(this),
-      weight: this.convertWeight.bind(this),
-      volume: this.convertVolume.bind(this)
-    }
+    this.#conversionCoordinator = new ConversionCoordinator()
   }
 
   /**
-   * Validates the inputs.
+   * Validates the string inputs.
    * 
-   * @param {*} convertFrom - The input for the unit to convert from
-   * @param {*} convertTo - The input for the unit to convert to
-   * @param {*} numberToConvert - The input for the number to convert, optional
+    * @param {Array} stringArray - The array of strings to validate
    */
-  #validateInputs(convertFrom, convertTo, numberToConvert) {
-    this.#inputValidator.validateInputTypeString(convertFrom)
-    this.#inputValidator.validateInputTypeString(convertTo)
-    this.#inputValidator.validateInputTypeNumber(numberToConvert)
+  #validateStringInputs(stringArray) {
+    this.#inputValidator.validateInputTypeArray(stringArray)
+
+    stringArray.forEach((string) => {
+      this.#inputValidator.validateInputTypeString(string)
+    })
   }
 
   /**
-   * Chooses the conversion method based on the sent conversion type.
+   * Validates the number inputs.
    * 
-   * @param {String} conversionType - The conversion type
-   * @throws {Error} - If the conversion is not available
-   * @returns {Function} - The conversion method
+   * @param {String} [conversionType] - The type of conversion
+   * @param {Array|Number} numberArray - The array of numbers or a single number to validate
    */
-  #chooseConversionMethod(conversionType) {
-    const conversionMethod = this.#conversionMethods[conversionType.toLowerCase()]
-    if (!conversionMethod) {
-      throw new Error('Conversion not available')
+  #validateNumberInputs(conversionType, numberArray) {
+    this.#inputValidator.validateInputTypeArray(numberArray)
+
+    numberArray.forEach((number) => {
+      this.#inputValidator.validateInputTypeNumber(number)
+      this.#validatePositiveNumber(conversionType, number)
+    })
+  }
+
+  /**
+   * Validates if the number is positive for non-temperature conversions.
+   * 
+   * @param {String} conversionType - The type of conversion
+   * @param {Number} numberToConvert - The number to convert
+   */
+  #validatePositiveNumber(conversionType, numberToConvert) {
+    if (conversionType !== 'temperature') { 
+      this.#inputValidator.validatePositiveNumber(numberToConvert)
     }
-    return conversionMethod
   }
 
   /**
@@ -77,9 +66,10 @@ export class ConverterSystem {
    * @returns {Number} - The converted number
    */
   convertTemperature(convertFrom, convertTo, numberToConvert) {
-    this.#validateInputs(convertFrom, convertTo, numberToConvert)
+    this.#validateStringInputs([convertFrom, convertTo])
+    this.#validateNumberInputs("temperature", [numberToConvert])
 
-    return this.#temperatureConverter.convert(convertFrom, convertTo, numberToConvert)
+    return this.#conversionCoordinator.handleTemperatureConversion(convertFrom, convertTo, numberToConvert)
   }
 
   /**
@@ -92,10 +82,10 @@ export class ConverterSystem {
    * @returns {Number} - The converted number
    */
   convertLength(convertFrom, convertTo, numberToConvert) {
-    this.#validateInputs(convertFrom, convertTo, numberToConvert)
-    this.#inputValidator.validatePositiveNumber(numberToConvert)
+    this.#validateStringInputs([convertFrom, convertTo])
+    this.#validateNumberInputs("length", [numberToConvert])
 
-    return this.#lengthConverter.convert(convertFrom, convertTo, numberToConvert)
+    return this.#conversionCoordinator.handleLengthConversion(convertFrom, convertTo, numberToConvert)
   }
 
   /**
@@ -108,10 +98,10 @@ export class ConverterSystem {
    * @returns {Number} - The converted number
    */
   convertSpeed(convertFrom, convertTo, numberToConvert) {
-    this.#validateInputs(convertFrom, convertTo, numberToConvert)
-    this.#inputValidator.validatePositiveNumber(numberToConvert)
+    this.#validateStringInputs([convertFrom, convertTo])
+    this.#validateNumberInputs("speed", [numberToConvert])
 
-    return this.#speedConverter.convert(convertFrom, convertTo, numberToConvert)
+    return this.#conversionCoordinator.handleSpeedConversion(convertFrom, convertTo, numberToConvert)
   }
 
   /**
@@ -124,10 +114,10 @@ export class ConverterSystem {
    * @returns {Number} - The converted number
    */
   convertWeight(convertFrom, convertTo, numberToConvert) {
-    this.#validateInputs(convertFrom, convertTo, numberToConvert)
-    this.#inputValidator.validatePositiveNumber(numberToConvert)
+    this.#validateStringInputs([convertFrom, convertTo])
+    this.#validateNumberInputs("weight", [numberToConvert])
 
-    return this.#weightConverter.convert(convertFrom, convertTo, numberToConvert)
+    return this.#conversionCoordinator.handleWeightConversion(convertFrom, convertTo, numberToConvert)
   }
 
   /**
@@ -140,10 +130,10 @@ export class ConverterSystem {
    * @returns {Number} - The converted number
    */
   convertVolume(convertFrom, convertTo, numberToConvert) {
-    this.#validateInputs(convertFrom, convertTo, numberToConvert)
-    this.#inputValidator.validatePositiveNumber(numberToConvert)
+    this.#validateStringInputs([convertFrom, convertTo])
+    this.#validateNumberInputs("volume", [numberToConvert])
 
-    return this.#volumeConverter.convert(convertFrom, convertTo, numberToConvert)
+    return this.#conversionCoordinator.handleVolumeConversion(convertFrom, convertTo, numberToConvert)
   }
 
   /**
@@ -156,12 +146,15 @@ export class ConverterSystem {
    * @returns {Array} - The converted numbers
    */
   convertMultipleValues(conversionType, convertFrom, convertTo, numbersToConvert) {
-    this.#inputValidator.validateInputTypeString(conversionType)
-    this.#inputValidator.validateInputTypeArray(numbersToConvert)
+    this.#validateStringInputs([conversionType, convertFrom, convertTo])
+    this.#validateNumberInputs(conversionType, numbersToConvert)
 
-    const conversionMethod = this.#chooseConversionMethod(conversionType)
+    // Choose the conversion method based on the conversion type
+    const conversionMethod = this.#conversionCoordinator.chooseConversionMethod(conversionType)
 
-    return numbersToConvert.map(number => conversionMethod(convertFrom, convertTo, number))
+    const convertedNumbers = numbersToConvert.map(number => conversionMethod(convertFrom, convertTo, number))
+
+    return convertedNumbers
   }
 
   /**
@@ -174,19 +167,23 @@ export class ConverterSystem {
    * @returns {Object} - The converted number with a summary of the conversion
    */
   convertWithSummary(conversionType, convertFrom, convertTo, numberToConvert) {
-    this.#inputValidator.validateInputTypeString(conversionType)
+    this.#validateStringInputs([conversionType, convertFrom, convertTo])
+    this.#validateNumberInputs(conversionType, [numberToConvert])
 
-    const conversionMethod = this.#chooseConversionMethod(conversionType)
+    // Choose the conversion method based on the conversion type
+    const conversionMethod = this.#conversionCoordinator.chooseConversionMethod(conversionType)
 
     const convertedNumber = conversionMethod(convertFrom, convertTo, numberToConvert)
 
-    return {
+    const summary = {
       conversionType: conversionType,
       convertFrom: convertFrom,
       convertTo: convertTo,
       numberToConvert: numberToConvert,
       convertedNumber: convertedNumber
     }
+
+    return summary
   }
 
   /**
@@ -200,10 +197,11 @@ export class ConverterSystem {
    * @returns {Number} - The converted number rounded up
    */
   convertAndRoundUp(conversionType, convertFrom, convertTo, numberToConvert, decimalPlaces) {
-    this.#inputValidator.validateInputTypeString(conversionType)
-    this.#inputValidator.validateInputTypeNumber(decimalPlaces)
+    this.#validateStringInputs([conversionType, convertFrom, convertTo])
+    this.#validateNumberInputs(conversionType, [numberToConvert, decimalPlaces])
 
-    const conversionMethod = this.#chooseConversionMethod(conversionType)
+    // Choose the conversion method based on the conversion type
+    const conversionMethod = this.#conversionCoordinator.chooseConversionMethod(conversionType)
 
     const convertedNumber = conversionMethod(convertFrom, convertTo, numberToConvert)
 
