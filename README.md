@@ -5,7 +5,26 @@ Version 1.0.0
 
 License MIT
 
-## Introduktion
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Available conversions](#available-conversions)
+  - [Temperature](#temperature)
+  - [Length](#length)
+  - [Speed](#speed)
+  - [Weight](#weight)
+  - [Volume](#volume)
+- [Installation](#installation)
+- [How to use](#how-to-use)
+  - [Available methods](#available-methods)
+  - [Parameters](#parameters)
+- [Restrictions](#restrictions)
+- [Errors](#errors)
+- [Contribution](#contribution)
+  - [Contributing](#contributing)
+  - [Bug Reports](#bug-reports)
+
+## Introduction
 This module allows you to convert various units of measurement, including temperature, length, speed, weight, and volume, between metric units (commonly used in Europe) and imperial units (commonly used in the US). The module can also convert multiple values of the same conversion, provide a conversion summary and round up the value.
 
 The module can be integrated into for example recipe, fitness and health, weather, and travel applications.
@@ -34,10 +53,10 @@ The module is currently only available in english.
 
 | From | To |
 |------|----|
-| Miles per hour (Mph, Mi/h) | Kilometers per hour (Km/h) |
-| Kilometers per hour (Kmph, Km/h) | Miles per hour (Mph) |
-| Feet per second (Fps, F/s) | Meters per second (M/s) |
-| Meters per second (Mps, M/s) | Feet per second (Fps) |
+| Miles per hour (Mph) | Kilometers per hour (Km/h) |
+| Kilometers per hour ( Km/h) | Miles per hour (Mph) |
+| Feet per second (Fps) | Meters per second (M/s) |
+| Meters per second (M/s) | Feet per second (Fps) |
 
 ### Weight
 
@@ -76,7 +95,7 @@ Note: Currently the release also includes the test cases.
 
 ## How to use
 
-The `ConverterSystem` class provides methods to convert various units of measurement between metric and imperial systems.
+The `UnitConverter` class provides methods to convert various units of measurement between metric and imperial systems.
 
 ### Available methods
 
@@ -91,25 +110,31 @@ All available methods (more specific descriptions further down):
 - **convertAndRoundUp**( conversionType, convertFrom, convertTo, numberToConvert, decimalPlaces )
 
 ```javascript
-const converter = new ConverterSystem()
+const converter = new UnitConverter()
 
 // Examples of use for all available methods:
 
-const convertedTemperature = converter.convertTemperature('celsius', 'fahrenheit', 56)
+const convertedTemperature = converter.convertTemperature('celsius', 'fahrenheit', 55) // = 131
 
-const convertedLength = converter.convertLength('m', 'ft', 13)
+const convertedLength = converter.convertLength('m', 'ft', 2) // ≈ 6.56
 
-const convertedSpeed = converter.convertSpeed('mph', 'km/h', 56)
+const convertedSpeed = converter.convertSpeed('mph', 'km/h', 60) // ≈ 96.56
 
-const convertedWeight = converter.convertWeight('kg', 'lb', 24)
+const convertedWeight = converter.convertWeight('kg', 'lb', 24) // ≈ 52.91 
 
-const convertedVolume = converter.convertVolume('deciliters', 'cups', 19)
+const convertedVolume = converter.convertVolume('deciliters', 'cups', 28) // ≈ 11.83
 
-const convertedValues = converter.convertMultipleValues('length', 'cm', 'in', [7, 12, 35, 42])
+const convertedValues = converter.convertMultipleValues('length', 'cm', 'in', [7, 12, 35, 42]) // ≈ [2.75, 4.72, 13.77, 16.53]
 
-const convertionSummary = converter.convertWithSummary('weight', 'kg', 'lb', 12)
+const convertionSummary = converter.convertWithSummary('weight', 'kg', 'lb', 12) // = { 
+    //   conversionType: 'weight',
+    //   convertFrom: 'kg',
+    //   convertTo: 'lb',
+    //   numberToConvert: 12,
+    //   convertedNumber: 26.45
+    //  }
 
-const convertedNumberRoundedUp = converter.convertAndRoundUp('volume', 'l', 'gal', 12, 3)
+const convertedNumberRoundedUp = converter.convertAndRoundUp('volume', 'l', 'gal', 12, 3) // = 3.170
 ```
 
 More specific description for each method:
