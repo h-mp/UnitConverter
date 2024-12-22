@@ -114,21 +114,27 @@ const converter = new UnitConverter()
 
 // Examples of use for all available methods:
 
-const convertedTemperature = converter.convertTemperature('celsius', 'fahrenheit', 56)
+const convertedTemperature = converter.convertTemperature('celsius', 'fahrenheit', 55) // = 131
 
-const convertedLength = converter.convertLength('m', 'ft', 13)
+const convertedLength = converter.convertLength('m', 'ft', 2) // ≈ 6.56
 
-const convertedSpeed = converter.convertSpeed('mph', 'km/h', 56)
+const convertedSpeed = converter.convertSpeed('mph', 'km/h', 60) // ≈ 96.56
 
-const convertedWeight = converter.convertWeight('kg', 'lb', 24)
+const convertedWeight = converter.convertWeight('kg', 'lb', 24) // ≈ 52.91 
 
-const convertedVolume = converter.convertVolume('deciliters', 'cups', 19)
+const convertedVolume = converter.convertVolume('deciliters', 'cups', 28) // ≈ 11.83
 
-const convertedValues = converter.convertMultipleValues('length', 'cm', 'in', [7, 12, 35, 42])
+const convertedValues = converter.convertMultipleValues('length', 'cm', 'in', [7, 12, 35, 42]) // ≈ [2.75, 4.72, 13.77, 16.53]
 
-const convertionSummary = converter.convertWithSummary('weight', 'kg', 'lb', 12)
+const convertionSummary = converter.convertWithSummary('weight', 'kg', 'lb', 12) // = { 
+    //   conversionType: 'weight',
+    //   convertFrom: 'kg',
+    //   convertTo: 'lb',
+    //   numberToConvert: 12,
+    //   convertedNumber: 26.45
+    //  }
 
-const convertedNumberRoundedUp = converter.convertAndRoundUp('volume', 'l', 'gal', 12, 3)
+const convertedNumberRoundedUp = converter.convertAndRoundUp('volume', 'l', 'gal', 12, 3) // = 3.170
 ```
 
 More specific description for each method:
