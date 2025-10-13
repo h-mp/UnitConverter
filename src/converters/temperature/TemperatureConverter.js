@@ -19,6 +19,7 @@ export class TemperatureConverter extends ConverterBaseClass {
 
     this._unitAbbreviationConversions = {
       "c": "celsius",
+      
       "f": "fahrenheit"
     }
 
