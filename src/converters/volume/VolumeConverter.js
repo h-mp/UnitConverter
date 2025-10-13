@@ -26,10 +26,19 @@ export class VolumeConverter extends ConverterBaseClass {
 
     this._unitAbbreviationConversions = {
       "c": "cups",
+      "cup": "cups",
+
       "dl": "deciliters",
+      "deciliter": "deciliters",
+
       "gal": "gallons",
+      "gallon": "gallons",
+
       "l": "liters",
-      "pt": "pints"
+      "liter": "liters",
+
+      "pt": "pints",
+      "pint": "pints"
     }
 
     this._availableConversions = {

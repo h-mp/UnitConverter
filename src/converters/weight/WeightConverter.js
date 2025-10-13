@@ -23,9 +23,19 @@ export class WeightConverter extends ConverterBaseClass {
 
     this._unitAbbreviationConversions = {
       "kg": "kilograms",
+      "kgs": "kilograms",
+      "kilogram": "kilograms",
+      "kilo": "kilograms",
+
       "lb": "pounds",
+      "lbs": "pounds",
+      "pound": "pounds",
+
       "g": "grams",
-      "oz": "ounces"
+      "gram": "grams",
+
+      "oz": "ounces",
+      "ounce": "ounces"
     }
 
     this._availableConversions = {

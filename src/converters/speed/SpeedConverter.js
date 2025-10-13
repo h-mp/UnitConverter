@@ -25,10 +25,13 @@ export class SpeedConverter extends ConverterBaseClass {
     this._unitAbbreviationConversions = {
       "mph": "milesPerHour",
       "miles per hour": "milesPerHour",
+
       "km/h": "kilometersPerHour",
       "kilometers per hour": "kilometersPerHour",
+
       "fps": "feetPerSecond",
       "feet per second": "feetPerSecond",
+      
       "m/s": "metersPerSecond",
       "meters per second": "metersPerSecond"
     }

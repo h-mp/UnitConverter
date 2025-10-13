@@ -23,10 +23,17 @@ export class LengthConverter extends ConverterBaseClass {
 
     // The unit abbreviation conversions
     this._unitAbbreviationConversions = {
-      'm': 'meters',
-      'ft': 'feet',
-      'cm': 'centimeters',
-      'in': 'inches'
+      "m": "meters",
+      "meter": "meters",
+    
+      "ft": "feet",
+      "foot": "feet",
+    
+      "cm": "centimeters",
+      "centimeter": "centimeters",
+    
+      "in": "inches",
+      "inch": "inches",
     }
 
     // The available conversions
